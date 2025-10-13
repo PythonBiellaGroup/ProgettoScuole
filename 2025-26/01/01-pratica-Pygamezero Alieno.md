@@ -96,14 +96,14 @@ style: |
 # 🎮 Pygame Zero
 ## Un motore per fare giochi (tutto incluso, no sbatti)
 
-💻 **Liceo Scientifico Biella - Scienze Applicate**
+💻 **III Liceo Scientifico Biella - Scienze Applicate**
 🐍 **Python Biella Group**
 
 ---
 
 ## Perché Pygame Zero?
 
-**Pygame classico:** 50 righe per far apparire un quadrato
+**Pygame classico:** più di 10 righe per far apparire un quadrato
 **Pygame Zero:** 5 righe per far apparire un alieno che si muove
 
 > "La vita è troppo breve per scrivere `pygame.init()` ogni volta"
@@ -113,7 +113,7 @@ Perfetto per chi vuole **creare**, non passare ore a configurare.
 
 ---
 
-## Installazione Sprint
+## Installazione
 
 ```bash
 pip install pgzero
@@ -134,7 +134,7 @@ Ogni gioco Pygame Zero ha **tre funzioni magiche**:
 - `update()` → aggiorna la logica di gioco
 - Eventi → `on_mouse_down()`, `on_key_press()`, ecc.
 
-**Fun fact:** Non devi chiamarle tu. Pygame Zero è come quel compagno di gruppo che fa tutto da solo.
+**Fun fact:** Non devi chiamarle tu. Pygame Zero è come quel compagno di scuola che aiuta senza che te ne accorgi.
 
 ---
 
@@ -483,8 +483,8 @@ il_mio_gioco/
 
 - **Documentazione ufficiale:** [pygame-zero.readthedocs.io](https://pygame-zero.readthedocs.io)
 - **Esempi:** Nella cartella di installazione di Pygame Zero
-- **Asset gratuiti:** [opengameart.org](https://opengameart.org), [itch.io](https://itch.io)
-- **Quando nulla funziona:** Stack Overflow (ovviamente)
+- **Asset gratuiti:** [opengameart.org](https://opengameart.org), [itch.io](https://itch.io/game-assets),[kenney.nl](https://kenney.nl/assets)
+- **Quando nulla funziona:** AI o Stack Overflow (ovviamente)
 
 ---
 
@@ -511,4 +511,3 @@ Se non ci sono domande, iniziate a codare.
 Se ci sono domande, probabilmente le risposte sono su Stack Overflow o ChatGPT.
 
 **Buon coding!** 👾
-```

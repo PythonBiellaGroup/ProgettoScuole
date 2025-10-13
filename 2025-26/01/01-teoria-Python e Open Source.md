@@ -95,7 +95,7 @@ style: |
 # Python e l'Open Source
 ## ... quando "condividere" ha cambiato il mondo
 
-💻 **Liceo Scientifico Biella - Scienze Applicate**
+💻 **III Liceo Scientifico Biella - Scienze Applicate**
 🐍 **Python Biella Group**
 
 ---
@@ -201,29 +201,6 @@ Una community (g)local:
 > ***Risultato?** Hanno reso ricco il mondo intero con ottime opportunità di guadagno personale.*
 
 ---
-
-## 🤔 Sfida da nerd
-
-> **Perché i programmatori**
-> **confondono Halloween e Natale?**
-
----
-
-## 🤔 Sfida da nerd
-
-> **Perché i programmatori**
-> **confondono Halloween e Natale?**
-
-<br>
-
-# Perché OCT 31 = DEC 25
-# 🎃 = 🎄
-
-*(31 in ottale = 25 in decimale... capito? No? Tranquilli, lo capirete! 😅)*
-
----
-
-
 
 ## 🐍 Caratteristiche di Python
 
