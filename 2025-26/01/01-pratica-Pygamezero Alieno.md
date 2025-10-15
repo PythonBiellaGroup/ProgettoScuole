@@ -195,7 +195,7 @@ def draw():
 
 **Actor** = sprite con superpoteri (posizione, collisioni, tutto incluso)
 
-> **Nota bene:** L'immagine deve essere nella cartella `images/` o Pygame Zero ti ignora come una notifica di Teams.
+> **Nota bene:** L'immagine deve essere nella cartella `images/` o Pygame Zero ti ignora come fai tu con lo stato WA di uno che non sopporti.
 
 ---
 
