@@ -115,14 +115,17 @@ Perfetto per chi vuole **creare**, non passare ore a configurare.
 
 ## Installazione
 
-```bash
-pip install pgzero
-```
+**Con Thonny (raccomandato per chi inizia):**
 
-**È tutto qui.** No configurazioni demoniache, no ritual sacrifice richiesti.
+1. Apri Thonny
+2. Vai su **Tools → Manage packages...**
+3. Cerca `pgzero` nella barra di ricerca
+4. Clicca su **Install**
 
-Se funziona: sei fortunato.
-Se non funziona: nel prossimo incontro parleremo di ambienti virtuali...
+**È tutto qui.** Thonny si occupa di tutto il resto.
+
+Se funziona: sei fortunato (e probabilmente succederà).
+Se non funziona: chiedi aiuto, non sei solo in questa battaglia.
 
 ---
 
