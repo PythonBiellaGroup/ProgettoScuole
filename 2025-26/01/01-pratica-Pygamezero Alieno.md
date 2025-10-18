@@ -89,6 +89,34 @@ style: |
   pre code .hljs-operator {
     color: #ff79c6;
   }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  th {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+  }
+
+  td {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  tr:hover td {
+    background: rgba(255,255,255,0.1);
+  }
+  
 ---
 
 
@@ -514,3 +542,7 @@ Se non ci sono domande, iniziate a codare.
 Se ci sono domande, probabilmente le risposte sono su Stack Overflow o ChatGPT.
 
 **Buon coding!** 👾
+
+<br>
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"* 🌟

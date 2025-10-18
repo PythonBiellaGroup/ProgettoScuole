@@ -89,8 +89,35 @@ style: |
   pre code .hljs-operator {
     color: #ff79c6;
   }
----
 
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  th {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+  }
+
+  td {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  tr:hover td {
+    background: rgba(255,255,255,0.1);
+  }
+  
+---
 
 # Python e l'Open Source
 ## ... quando "condividere" ha cambiato il mondo
@@ -266,9 +293,9 @@ iva_da_pagare = calcola_iva(150, 5)
 
 **Il codice si legge molte più volte di quante si scriva!**
 
-> *"Scrivi codice come se la persona che lo dovrà mantenere fosse*
-> *un serial killer violento che sa dove abiti."*
-> — Martin Golding
+> *Fondamentalmente...*
+> *Scrivete codice come se dovesse leggerlo uno psicopatico violento che sa dove abitate.*
+> *E quello psicopatico siete voi tra 6 mesi.*
 
 <br>
 
@@ -373,6 +400,8 @@ print("Hello World!")
 
 ## 🏭 Python nel mondo reale
 
+<br>
+
 🏦 **Finanza**: Trading algoritmico, analisi di rischio, blockchain
 
 🔬 **Ricerca**: Bioinformatica, fisica delle particelle (CERN!), astronomia
@@ -381,13 +410,28 @@ print("Hello World!")
 
 🤖 **AI**: TensorFlow, PyTorch, scikit-learn *(tutti in Python)*
 
-<br>
+💻 **DevOps**: Automazione di tutto l'automatizzabile
 
-> *Se l'AI sta cambiando il mondo, e l'AI gira su Python...*
-> *beh, fate voi i conti!* 🧮
+👥 **Hacker etici**: Penetration testing e security
+
+> *Se l'AI sta cambiando il mondo, e l'AI gira su Python... *beh, fate voi i conti!* 🧮
 
 ---
 
+## 🎯 SFIDA: Trova l'intruso
+
+Quale di questi NON è un motivo valido per usare Python?
+
+A) Sintassi pulita e leggibile
+B) Enorme ecosistema di librerie
+C) Performance da Formula 1
+D) Eccellente per prototipazione rapida
+
+<br>
+
+*Spoiler: Python è fantastico, ma veloce come un F1? Ecco, no.* 🐌
+
+---
 
 
 ## 🔋 "Batteries Included"
@@ -416,14 +460,14 @@ import antigravity
 
 ---
 
-## 📚 Sfida da import
+## 🎯 Sfida da import
 
 > **Quanti programmatori Python**
 > **servono per cambiare una lampadina?**
 
 ---
 
-## 📚 Sfida da import
+## 🎯 Sfida da import
 
 > **Quanti programmatori Python**
 > **servono per cambiare una lampadina?**

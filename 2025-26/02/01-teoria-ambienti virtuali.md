@@ -89,10 +89,38 @@ style: |
   pre code .hljs-operator {
     color: #ff79c6;
   }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  th {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+  }
+
+  td {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  tr:hover td {
+    background: rgba(255,255,255,0.1);
+  }
+  
 ---
 
 
-# 🐍 Python: Dalla Preistoria agli Ambienti Virtuali
+# 🐍 Python: dalla preistoria agli ambienti virtuali
 
 **Ovvero: come NON trasformare il vostro PC in un campo di battaglia di dipendenze**
 
@@ -111,35 +139,6 @@ style: |
 *(No, non il rettile. Delusione per tutti)*
 
 **Fun fact**: Guido voleva solo passare il tempo. Ha creato uno dei linguaggi più usati al mondo. *Casual.*
-
----
-
-## 👥 Chi usa Python oggi?
-
-- **Data Scientists**: "Pandas è la mia vita" 🐼
-- **Web Developers**: Django e Flask per il web che spacca
-- **AI/ML Engineers**: TensorFlow, PyTorch, scikit-learn
-- **DevOps**: Automazione di tutto l'automatizzabile
-- **Hacker etici**: Penetration testing e security
-- **Voi**: Futuri dominatori del mondo tech 🚀
-
-**Anche**: NASA, Google, Netflix, Spotify, Instagram...
-*Praticamente, se ha successo, probabilmente usa Python*
-
----
-
-## 🎯 SFIDA #1: Trova l'intruso
-
-Quale di questi NON è un motivo valido per usare Python?
-
-A) Sintassi pulita e leggibile
-B) Enorme ecosistema di librerie
-C) Performance da Formula 1
-D) Eccellente per prototipazione rapida
-
-<br>
-
-*Spoiler: Python è fantastico, ma veloce come un F1? Ecco, no.* 🐌
 
 ---
 
@@ -189,22 +188,7 @@ Cos'è un PEP? Descrizione di una nuove feature per Python
 
 ---
 
-## 🧘 The Zen of Python (PEP 20)
-
-```python
->>> import this
-```
-
-- Beautiful is better than ugly
-- Explicit is better than implicit
-- Simple is better than complex
-- **Readability counts** ⭐
-
-*Fondamentalmente: scrivete codice come se dovesse leggerlo uno psicopatico che sa dove abitate. E quello psicopatico siete voi tra 6 mesi.*
-
----
-
-## 🎯 SFIDA #2: PEP Quiz
+## 🎯 SFIDA: PEP Quiz
 
 Quale tra questi è un VERO PEP?
 
@@ -265,7 +249,7 @@ pip install package_figo
 
 ---
 
-## 🎯 SFIDA #3: Disaster Scenario
+## 🎯 SFIDA: Disaster Scenario
 
 Avete installato 47 pacchetti globalmente. Ora dovete:
 - Deployare il progetto su un server
@@ -282,8 +266,9 @@ Avete installato 47 pacchetti globalmente. Ora dovete:
 
 ## 🛡️ Ambienti Virtuali: I Vostri Salvatori
 
-**Cosa sono?**
-Cartelle isolate con:
+<br>
+
+**Cosa sono?** Cartelle isolate con:
 - Propria copia di Python
 - Propri pacchetti installati
 - Zero interferenze con il sistema
@@ -298,6 +283,8 @@ Cartelle isolate con:
 ---
 
 ## 📦 venv: Il Classico Intramontabile
+
+<br>
 
 **Incluso in Python 3.3+** (non serve installare nulla!)
 
@@ -358,7 +345,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🎯 SFIDA #4: venv Master
+## 🎯 SFIDA: venv Master
 
 Qual è l'ordine CORRETTO delle operazioni?
 
@@ -393,6 +380,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ---
 
 ## 🚀 uv: Velocità Supersonica
+
+<br>
 
 ### Creare ambiente con uv:
 ```bash
@@ -529,7 +518,7 @@ uv pip freeze > requirements.txt
 - Quando dubitate, create un nuovo venv
 - Python è fantastico, ma l'isolamento lo è ancora di più
 
-**Prossima lezione**: Faremo esplodere cose con NumPy! 💥
+**Prossimo incontro**: Faremo cloni di codice con Git! 💥
 
 <br>
 
@@ -548,4 +537,4 @@ uv pip freeze > requirements.txt
 
 <br>
 
-**Extra credit**: Chi installa qualcosa globalmente questa settimana paga le pizze 🍕
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"* 🌟

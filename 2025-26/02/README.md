@@ -1,4 +1,4 @@
-Materiali e risorse per il primo intervento:
+Materiali e risorse per il secondo intervento:
 - Versioni di Python e ambienti virtuali
 - Secondo gioco
 
