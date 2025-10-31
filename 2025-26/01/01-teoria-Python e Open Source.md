@@ -418,22 +418,6 @@ print("Hello World!")
 
 ---
 
-## 🎯 SFIDA: Trova l'intruso
-
-Quale di questi NON è un motivo valido per usare Python?
-
-A) Sintassi pulita e leggibile
-B) Enorme ecosistema di librerie
-C) Performance da Formula 1
-D) Eccellente per prototipazione rapida
-
-<br>
-
-*Spoiler: Python è fantastico, ma veloce come un F1? Ecco, no.* 🐌
-
----
-
-
 ## 🔋 "Batteries Included"
 
 Python viene con una **libreria standard ENORME**:
@@ -460,27 +444,18 @@ import antigravity
 
 ---
 
-## 🎯 Sfida da import
+## 🎯 SFIDA: Trova l'intruso
 
-> **Quanti programmatori Python**
-> **servono per cambiare una lampadina?**
+Quale di questi NON è un motivo valido per usare Python?
 
----
+A) Sintassi pulita e leggibile
+B) Enorme ecosistema di librerie
+C) Performance da Formula 1
+D) Eccellente per prototipazione rapida
 
-## 🎯 Sfida da import
+<br>
 
-> **Quanti programmatori Python**
-> **servono per cambiare una lampadina?**
-
-# Zero! 💡
-
-```python
-import lightbulb
-
-lightbulb.change()
-```
-
-Esiste già una libreria anche per quello! 😎
+*Spoiler: Python è fantastico, ma veloce come un F1? Ecco, no.* 🐌
 
 ---
 

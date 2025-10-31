@@ -209,7 +209,7 @@ def draw():
 pgzrun.go()
 ```
 
-**Risultato:** Una finestra rossa. Minimalista. Artistico. Inutile.
+**Risultato:** Una finestra rossa. Minimalista. Artistica. Inutile.
 
 ---
 
@@ -306,7 +306,7 @@ def on_mouse_down(pos):
 messaggio = ""
 
 def on_mouse_down(pos):
-    global messaggio  # Senza questo, Python ti odia
+    global messaggio  # Senza global, la variabile è solo locale
     if alieno.collidepoint(pos):
         messaggio = "Bel colpo!"
     else:
@@ -384,6 +384,24 @@ else:
 Pygame Zero ricarica l'immagine al volo. Niente complicazioni.
 
 **Requisito:** Devi avere `esplosione.png` nella cartella `images/`.
+
+---
+
+## Struttura file del progetto
+
+```
+il_mio_gioco/
+│
+├── gioco.py          # Il tuo codice
+├── images/           # Le tue immagini
+│   ├── alieno.png
+│   └── esplosione.png
+└── sounds/           # I tuoi suoni (opzionale)
+    └── colpo.wav
+```
+
+**Regola d'oro:** Pygame Zero cerca automaticamente in `images/` e `sounds/`. Non cambiare i nomi delle cartelle o il gioco implode.
+
 
 ---
 
@@ -474,23 +492,6 @@ Ora che avete la base, potete aggiungere:
 - **Vite:** 3 errori e game over
 
 Il limite è la vostra creatività.
-
----
-
-## Struttura file del progetto
-
-```
-il_mio_gioco/
-│
-├── gioco.py          # Il tuo codice
-├── images/           # Le tue immagini
-│   ├── alieno.png
-│   └── esplosione.png
-└── sounds/           # I tuoi suoni (opzionale)
-    └── colpo.wav
-```
-
-**Regola d'oro:** Pygame Zero cerca automaticamente in `images/` e `sounds/`. Non cambiare i nomi delle cartelle o il gioco implode.
 
 ---
 
