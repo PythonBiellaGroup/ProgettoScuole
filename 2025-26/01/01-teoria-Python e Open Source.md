@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 theme: default
 paginate: true
 backgroundColor: #1a1a1a
@@ -120,7 +120,7 @@ style: |
 ---
 
 # Python e l'Open Source
-## ... quando "condividere" ha cambiato il mondo
+## ... la rivoluzione della condivisione
 
 💻 **III Liceo Scientifico Biella - Scienze Applicate**
 🐍 **Python Biella Group**
@@ -223,9 +223,9 @@ Una community (g)local:
 
 💡 E naturalmente... **Python**! 🐍
 
-> *Progetti avviati da "persone normali" che avrebbero potute vendere tutto e diventare ricche.*
-> *Loro hanno regalato il loro lavoro al mondo.* 🌍
-> ***Risultato?** Hanno reso ricco il mondo intero con ottime opportunità di guadagno personale.*
+> *Progetti avviati da "persone normali" che avrebbero potuto vendere e arricchirsi subito.*
+> *Loro hanno regalato il loro lavoro al mondo...* 🌍
+> *e costruito carriere e successi che nessuna vendita avrebbe mai potuto garantire.*
 
 ---
 
