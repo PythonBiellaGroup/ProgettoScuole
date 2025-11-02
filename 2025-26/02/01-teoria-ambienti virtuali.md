@@ -124,6 +124,8 @@ style: |
 
 **Ovvero: come NON trasformare il vostro PC in un campo di battaglia di dipendenze**
 
+<br>
+
 💻 **III Liceo Scientifico Biella - Scienze Applicate**
 🐍 **Python Biella Group**
 
@@ -535,6 +537,18 @@ uv pip freeze > requirements.txt
 
 *P.S.: Le risposte alle sfide le trovate pensando. Sì, dovete usare il cervello. Lo so, che fatica.* 🧠
 
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Grazie per l'attenzione...
+
 <br>
 
-> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"* 🌟
+![width:300px](./pbg-qr-code.png)
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
