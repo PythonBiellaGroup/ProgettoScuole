@@ -95,6 +95,7 @@ Progetti eccellenti degli studenti (aggiornato a fine anno):
 ## 📧 Contatti
 
 - **Email**: pythonbiellagroup@gmail.com
+- **Discussions**: [Discussions](https://github.com/PythonBiellaGroup/ProgettoScuole/discussions)
 - **Issues**: [GitHub Issues](https://github.com/PythonBiellaGroup/ProgettoScuole/issues)
 
 ---
