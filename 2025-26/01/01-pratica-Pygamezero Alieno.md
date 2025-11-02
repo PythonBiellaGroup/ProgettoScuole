@@ -156,6 +156,22 @@ Se funziona: sei fortunato (e probabilmente succederà).
 Se non funziona: chiedi aiuto, non sei solo in questa battaglia.
 
 ---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Il gioco che programmeremo
+
+<br>
+
+![width:400px](./game.png)
+
+# Colpisci l'alieno
+
+---
 
 ## La struttura base
 
@@ -546,4 +562,18 @@ Se ci sono domande, probabilmente le risposte sono su Stack Overflow o ChatGPT.
 
 <br>
 
-> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"* 🌟
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Grazie per l'attenzione...
+
+<br>
+
+![width:300px](./pbg-qr-code.png)
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*

@@ -529,4 +529,18 @@ Il ruolo del programmatore **non scompare**, si **evolve**:
 
 <br>
 
-> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"* 🌟
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Grazie per l'attenzione...
+
+<br>
+
+![width:300px](./pbg-qr-code.png)
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
