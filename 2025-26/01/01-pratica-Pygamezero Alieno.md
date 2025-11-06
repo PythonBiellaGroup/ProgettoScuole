@@ -172,6 +172,19 @@ img {
 # Colpisci l'alieno
 
 ---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+<br>
+
+![width:1200px](./logica-di-gioco.png)
+
+---
+
 
 ## La struttura base
 
@@ -260,6 +273,20 @@ alieno.y = 300  # Centro verticale
 ```
 
 ---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Come vedere il rettangolo di gioco
+
+<br>
+
+![width:500px](./schema-coordinate.png)
+
+---
 
 ## 🤔 Sfida
 
@@ -315,7 +342,26 @@ def on_mouse_down(pos):
 **Magia della fisica computazionale** (o quasi).
 
 ---
+<!-- _class: center -->
+<style scoped>
+section.center {
+  text-align: center;
+}
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
 
+## Actor.collidepoint()
+
+ _Come capisce PyGame se colpisco un Actor?_
+
+<br>
+
+![width:600px](./collide-points.png)
+
+---
 ## Variabili globali: il male necessario
 
 ```python
