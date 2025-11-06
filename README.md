@@ -54,7 +54,8 @@ git clone https://github.com/PythonBiellaGroup/ProgettoScuole.git
 cd ProgettoScuole
 ```
 
-NOTA: per la renderizzazione delle presentazioni si consiglia l'installazione del plugin Marp in VSCode.
+NOTA: le presentazioni in formato markdown (md) sono predisposte per essere renderizzate utilizzando l'estensione di VS Code "Marp for VS Code".
+
 
 ---
 

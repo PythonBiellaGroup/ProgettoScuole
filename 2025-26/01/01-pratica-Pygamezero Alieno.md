@@ -175,7 +175,7 @@ img {
 <style scoped>
 img {
   display: block;
-  margin: 0 auto;
+  margin: -40px auto 0 auto;
 }
 </style>
 
@@ -349,7 +349,7 @@ section.center {
 }
 img {
   display: block;
-  margin: 0 auto;
+  margin: -40px auto 0 auto;
 }
 </style>
 
