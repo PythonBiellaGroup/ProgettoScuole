@@ -184,7 +184,7 @@ Una community (g)local:
 🌱 Sviluppo della comunità
 
 > *"Se ho visto più lontano è perché stavo sulle spalle di giganti"*
-> — Isaac Newton *(il primo open source developer!* 😄*)*
+> — Isaac Newton *(il primo open source developer? 😄)*
 
 ---
 
