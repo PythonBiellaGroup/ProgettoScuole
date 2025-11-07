@@ -157,6 +157,7 @@ style: |
 - 📝 Una lettera d'addio molto dettagliata
 - 🗺️ Una mappa del tesoro (dove X = il tuo errore)
 - 🚨 Il rapporto della polizia dopo l'incidente
+- 💥 La scatola nera di un aereo che racconta tutto ciò che è successo prima del crash
 
 **Spoiler:** Python è MOLTO specifico. Troppo, forse.
 
@@ -175,8 +176,9 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 ```
 
-**Si legge dal BASSO verso l'ALTO!** ??
-(Sì, Python vuole complicarci la vita)
+**Si legge dal BASSO verso l'ALTO!** ⬆️
+❌ La parte più bassa dello stacktrace (l'errore più recente) è dove si è verificato il crash, quindi è il primo punto da esaminare.
+🧠 Le righe superiori ti aiutano a capire come l'errore si è propagato e ti forniscono un contesto utile per il debug. Puoi risalire nel "flusso" delle chiamate fino a trovare il punto in cui il programma ha preso una piega sbagliata.
 
 ---
 
@@ -401,9 +403,10 @@ def trova_massimo(numeri):
 
 ---
 
-# 🖨️ Metodo del "Print Debugging" 
+# 🖨️ Metodo "barbaro" del "print" 
 <br>
-A volte il debugger è troppo. Soluzione veloce:
+A volte il debugger è troppo. 
+Soluzione veloce che a volte è sufficiente:
 
 ```python
 def calcola_media(voti):
@@ -419,7 +422,7 @@ def calcola_media(voti):
 ```
 
 **Pro:** Veloce e intuitivo
-**Contro:** Dovrai cancellare tutti i print dopo (o dimenticartene e consegnare così al prof ??)
+**Contro:** Dovrai cancellare tutti i print dopo (o dimenticartene e consegnare così al prof 😅)
 
 ---
 
