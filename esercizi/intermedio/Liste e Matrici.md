@@ -124,6 +124,7 @@ style: |
 <br>
 <br>
 
+**Livello INTERMEDIO**
 🐍 **Python Biella Group**
 
 ---
