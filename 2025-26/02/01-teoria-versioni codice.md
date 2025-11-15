@@ -206,8 +206,8 @@ Un sistema che:
 ![w:300](https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png)
 
 - Creato da Linus Torvalds (sì, quello di Linux)
-- Lo usano Google, Microsoft, NASA, e... presto voi!
-- È come WhatsApp per il codice, ma senza gli status imbarazzanti
+- Lo usano Google, Microsoft, NASA, e... presto anche voi!
+- È lo standard de facto per il codice, come WhatsApp lo è per i messaggi
 
 ---
 
