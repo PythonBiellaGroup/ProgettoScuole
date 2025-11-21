@@ -160,7 +160,7 @@ ovvero: *"Perché chiamare un file `VERA_VERSIONE_BUONA_definitiva3(questa_lo_gi
 
 # 🎭 La tragedia del lavoro di gruppo
 
-**Scenario tipico:**
+**Immaginate di lavorare sul gioco in gruppo:**
 - Marco scrive il codice degli alieni
 - Sofia aggiunge i punteggi
 - Luca modifica... tutto quello che avevano fatto Marco e Sofia
@@ -175,7 +175,7 @@ ovvero: *"Perché chiamare un file `VERA_VERSIONE_BUONA_definitiva3(questa_lo_gi
 
 - Evita il classico: “CHI HA ROTTO IL CODICE?!” 😡  
 - Permette **rami separati** per lavorare su parti diverse  
-- Unisce il lavoro con **merge** e **pull request**  
+- Unisce il lavoro con **merge** e **pull request** (li vedremo presto in dettaglio) 
 - Ogni modifica è documentata come in un’indagine scientifica 🔍  
 - Perfetto per progetti scolastici… e per non litigare con i compagni
 
@@ -183,7 +183,7 @@ ovvero: *"Perché chiamare un file `VERA_VERSIONE_BUONA_definitiva3(questa_lo_gi
 
 <!-- _class: lead -->
 
-# 🦸‍♂️ Enter: il Version Control System
+# 🦸‍♂️ Enter: il Version Control System (VCS)
 
 *Il supereroe di cui non sapevi di avere bisogno*
 
@@ -280,7 +280,7 @@ a) `l33t_h4ck3r`
 b) `giulia.verdi`
 c) `pizza_pasta_mandolino`
 
-*Se avete scelto (a) o (c), dobbiamo parlare...* 😬
+*Se avete scelto (a) o (c), potreste pentiverne in futuro...* 😬
 
 ---
 
@@ -295,22 +295,7 @@ c) `pizza_pasta_mandolino`
 
 *È come scaricare musica, ma legale!* 🎵
 
----
-
-<br>
-<br>
-
-**💻 Metodo 2: Git Clone (per PRO)**
-
-```bash
-git clone https://github.com/username/repository.git
-```
-
-**In Thonny:**
-- Strumenti → Apri shell di sistema
-- Naviga alla cartella desiderata
-- Incolla il comando
-- *BOOM!* Progetto scaricato ✨
+*Il metodo 2, tramite terminale lo vedremo la prossima volta*
 
 ---
 
@@ -332,7 +317,7 @@ def draw():
 pgzrun.go()
 ```
 
-*Ora lo mettiamo su GitHub come dei veri professionisti!* 👨‍💻
+*Ora vi facciamo vedere come metterlo su GitHub, come dei veri professionisti!* 👨‍💻
 
 ---
 
@@ -349,6 +334,30 @@ pgzrun.go()
 *Congratulazioni! Avete appena creato casa per il vostro codice!* 🏠
 
 ---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Click sul "+" in alto a destra
+## "New repository"
+
+![width:600px](./github/github-new-repo-01.png)
+
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+![width:600px](./github/github-new-repo-02.png)
+
+---
+
 
 # 📝 Il README.md: la vetrina del progetto
 
@@ -368,6 +377,40 @@ Gioco sviluppato con PyGameZero durante le lezioni di Informatica III Liceo.
 ```
 
 *Il README è come il riassunto del libro: tutti lo leggono per primo!*
+
+---
+
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+![width:800px](./github/github-readme-01.png)
+
+---
+
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+
+![width:800px](./github/github-readme-02.png)
+
+---
+
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+![width:600px](./github/github-readme-03.png)
 
 ---
 
@@ -394,6 +437,30 @@ Gioco Python con PyGameZero. Clicca l'alieno per vincere!"
    - cartella `sounds/` (se hai suoni)
 3. Scrivi un messaggio: "Aggiunto gioco colpisci alieno"
 4. Click "Commit changes"
+
+---
+
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+![width:600px](./github/github-upload-01.png)
+
+
+---
+
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+![width:600px](./github/github-upload-02.png)
+
 
 ---
 
@@ -428,6 +495,17 @@ Gioco Python con PyGameZero. Clicca l'alieno per vincere!"
   ├── images/
   └── sounds/
   ```
+
+---
+
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+![width:800px](./github/github-repo-final.png)
 
 ---
 
@@ -470,7 +548,7 @@ password.txt
 
 <!-- _class: lead -->
 
-# ⚔️ SFIDA FINALE
+# ⚔️ SFIDA PER IL PROSSIMO INCONTRO
 
 1. Create account GitHub (FATTO)
 2. Create repository "colpisci-alieno"
@@ -499,8 +577,9 @@ password.txt
 
 # 🚀 Prossimi passi
 
-**Nel prossimo incontro:**
+**Nei prossimi incontri su questo tema:**
 - Git da terminale in Thonny
+- Clone e push
 - Branch e merge
 - Pull request
 - Gestione conflitti
