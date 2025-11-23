@@ -282,7 +282,7 @@ if keyboard.left:
 
 ---
 
-# Collisioni: collidepoint vs colliderect
+# Collisioni: collidepoint o colliderect
 
 ![width:700px](./collide-points.png)
 
@@ -345,7 +345,7 @@ Dopo 10 secondi → **game over**
 
 ---
 
-# Game Over: come funziona davvero?
+# Game Over: come funziona?
 
 ```python
 if game_over:
