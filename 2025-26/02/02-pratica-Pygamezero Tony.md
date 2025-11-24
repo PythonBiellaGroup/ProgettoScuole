@@ -145,9 +145,17 @@ Tutto in poche righe.
 
 ## Anteprima del gioco
 
-![Anteprima del gioco](./gioco-anteprima.png)
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
 
-> Tony deve raccogliere quante più note musicali possibili prima che scada il tempo! Se supera il punteggio di vittoria, vince la partita!
+![width:400px](./gioco-anteprima.png)
+
+> Tony deve raccogliere quante più note musicali possibili prima che scada il tempo! 
+>Se supera il punteggio di vittoria, vince la partita!
 
 ---
 
