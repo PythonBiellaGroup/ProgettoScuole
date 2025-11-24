@@ -123,7 +123,7 @@ style: |
 # 🎮 PyGame Zero
 ## Ovvero: come diventare game developer senza impazzire
 **Recap: "Colpisci l'alieno"**
-*Per chi era distratto (sappiamo chi siete 👀)*
+*Per chi era distratto (sappiamo che a volte lo siete 👀)*
 <br>
 
 💻 **III Liceo Scientifico Biella - Scienze Applicate**
