@@ -162,23 +162,19 @@ img {
 ## Configurazione iniziale
 
 ```python
-# Importazione dei moduli necessari di Pygame Zero
 from pgzero.actor import Actor
 from pgzero.clock import clock
 from pgzero.keyboard import keyboard
 import pgzrun
 from random import randint
 
-# Costanti della finestra di gioco
 TITLE = "Tony alla ricerca... della musica"
 WIDTH = 800
 HEIGHT = 600
 
-# Costanti di gioco
-DURATA_GIOCO = 30  # Durata della partita in secondi
-VITTORIA_PUNTEGGIO = 20  # Punteggio minimo per vincere
-
-# Variabili di stato del gioco
+# Costanti e variabili di gioco
+DURATA_GIOCO = 30
+VITTORIA_PUNTEGGIO = 20
 punteggio = 0
 game_over = False
 musica_vittoria_suonata = False
@@ -203,10 +199,9 @@ nota = Actor("nota musicale")
 
 ```python
 def draw():
-    # Disegna l'immagine di sfondo
+    # Disegna l'immagine di sfondo (nuovo!)
     screen.blit("sfondo_bn", (0, 0))
     
-    # Disegna gli sprite di nota e Tony
     nota.draw()
     tony.draw()
     
@@ -256,7 +251,6 @@ if game_over:
             fontsize=40,
             color="red",
         )
-    
     # Messaggio per ricominciare
     screen.draw.text(
         "Premi SPAZIO per ricominciare",
@@ -273,7 +267,6 @@ if game_over:
 ```python
 if nota_presa:
     punteggio += 1
-    
     # Suona una nota diversa in base al punteggio
     if punteggio % 7 == 0:
         sounds.do.play()
@@ -281,15 +274,10 @@ if nota_presa:
         sounds.re.play()
     elif punteggio % 7 == 2:
         sounds.mi.play()
-    elif punteggio % 7 == 3:
-        sounds.fa.play()
-    elif punteggio % 7 == 4:
-        sounds.sol.play()
-    elif punteggio % 7 == 5:
-        sounds.la.play()
+...
     elif punteggio % 7 == 6:
         sounds.si.play()
-    
+
     piazza_nota()
 ```
 
@@ -300,8 +288,6 @@ if nota_presa:
 ```python
 def update():
     global punteggio, game_over
-    
-    # Esegui la logica solo se il gioco non è finito
     if not game_over:
         if keyboard.left:
             tony.x -= 5
@@ -311,11 +297,9 @@ def update():
             tony.y -= 5
         if keyboard.down:
             tony.y += 5
-        
-        nota_presa = tony.colliderect(nota)
-        
+
+        nota_presa = tony.colliderect(nota)        
         if nota_presa:
-            punteggio += 1
             # ... (sistema note musicali)
             piazza_nota()
 ```
@@ -329,7 +313,7 @@ def reset_gioco():
     global punteggio, game_over, musica_vittoria_suonata
     punteggio = 0
     game_over = False
-    musica_vittoria_suonata = False  # Reset variabile musica finale
+    musica_vittoria_suonata = False
     tony.pos = 100, 100
     tony.image = "tony"
     piazza_nota()
@@ -390,8 +374,8 @@ section {
 * X aumenta → destra
 * Y aumenta → in basso
 
-`tony.x += 5` → Tony si muove a destra  
-`tony.y -= 5` → Tony sale
+`tony.x += 5` → Tony si muove a ...  
+`tony.y -= 5` → Tony sale o scende?
 
 ---
 
@@ -415,7 +399,6 @@ if keyboard.left:
 
 ```
 collidepoint((x, y))          colliderect(other)
-      
       ┌─────────┐                ┌─────────┐
       │  Tony   │                │  Tony   │
       │    •    │ ← punto        │    ┌────┼────┐
@@ -456,13 +439,13 @@ else:
 
 ## Clock: programmare il futuro 🔮
 
-Nel nostro gioco usiamo:
+Nel nostro gioco lo usiamo due volte:
 
 ```python
-# All'inizio del gioco
+# All'inizio del gioco, parte il timer
 clock.schedule(tempo_scaduto, DURATA_GIOCO)
 
-# Nel reset
+# Nel reset, riparte il timer
 clock.schedule(tempo_scaduto, DURATA_GIOCO)
 ```
 
@@ -482,7 +465,7 @@ clock.schedule(tempo_scaduto, DURATA_GIOCO)
 ```
 
 🧠 **Concetti**:
-- Il gioco ora ha 3 stati distinti invece di 2
+- Il gioco ha 3 stati distinti
 - Ogni stato ha una visualizzazione diversa
 - Lo stato determina quali azioni sono permesse
 
@@ -495,7 +478,6 @@ clock.schedule(tempo_scaduto, DURATA_GIOCO)
 sounds.do.play()
 sounds.re.play()
 # ... ecc
-
 # Suono di vittoria
 sounds.last_note.play()
 
@@ -559,9 +541,7 @@ tony_musica/
 └── sounds/
     ├── do.wav
     ├── re.wav
-    ├── mi.wav
-    ├── fa.wav
-    ├── sol.wav
+    ├── ...
     ├── la.wav
     ├── si.wav
     └── last_note.wav
@@ -598,6 +578,7 @@ Il controllo dello stato è fondamentale per gestire correttamente il flusso del
 - Il gioco non si resetta → verifica `reset_gioco()` e `on_key_down()`
 - La vittoria non appare → controlla `VITTORIA_PUNTEGGIO`
 - Tony continua a muoversi dopo game over → manca `if not game_over`
+- Leggere sempre bene il **messaggio di errore**
 
 ---
 
@@ -606,14 +587,10 @@ Il controllo dello stato è fondamentale per gestire correttamente il flusso del
 💡 **Idee per migliorare il gioco:**
 
 - Aggiungere ostacoli da evitare
-- Creare livelli di difficoltà crescente
+- Creare livelli di difficoltà crescente (tempo e velocità)
 - Implementare un sistema di vite
-- Aggiungere power-up speciali
-- Creare una classifica dei migliori punteggi
-- Aggiungere animazioni più fluide
 - Implementare nemici che si muovono
-- Creare diverse modalità di gioco
-
+- Usate la creatività!
 ---
 
 ## Conclusione
@@ -627,7 +604,6 @@ Il controllo dello stato è fondamentale per gestire correttamente il flusso del
 * Sistema di vittoria/sconfitta
 * Reset e riavvio del gioco
 * Audio dinamico con note musicali
-* Feedback visivo migliorato
 
 > "Programmare giochi è il modo più divertente per capire la logica e la gestione dello stato."
 
