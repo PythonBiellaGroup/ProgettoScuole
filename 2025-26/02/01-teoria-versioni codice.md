@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 theme: default
 paginate: true
 backgroundColor: #1a1a1a
@@ -153,7 +153,8 @@ ovvero: *"Perché chiamare un file `VERA_VERSIONE_BUONA_definitiva3(questa_lo_gi
 - Evita **file duplicati** con nomi imbarazzanti  
 - Ti permette di **tornare indietro nel tempo** (senza costruire un acceleratore di particelle)  
 - Tiene traccia di **chi ha fatto cosa**, e **quando**  
-- Permette di sperimentare senza paura di distruggere tutto 🤯  
+- Permette di sperimentare senza paura di distruggere tutto 🤯
+- Fornisce una **cartella condivisa** dove sta il codice
 - È lo *standard* nel mondo della programmazione
 
 ---
@@ -164,20 +165,10 @@ ovvero: *"Perché chiamare un file `VERA_VERSIONE_BUONA_definitiva3(questa_lo_gi
 - Marco scrive il codice degli alieni
 - Sofia aggiunge i punteggi
 - Luca modifica... tutto quello che avevano fatto Marco e Sofia
+- Chi ha l'ultima versione? E dov'è?
 - Risultato: **CAOS ASSOLUTO** 💥
 
 *"Ma io avevo già fatto quella parte!" - cit. ogni progetto di gruppo*
-
----
-
-# 👥 Versionamento per lavorare in gruppo
-## Ovvero: “Come evitare guerre civili nel team”
-
-- Evita il classico: “CHI HA ROTTO IL CODICE?!” 😡  
-- Permette **rami separati** per lavorare su parti diverse  
-- Unisce il lavoro con **merge** e **pull request** (li vedremo presto in dettaglio) 
-- Ogni modifica è documentata come in un’indagine scientifica 🔍  
-- Perfetto per progetti scolastici… e per non litigare con i compagni
 
 ---
 
@@ -211,14 +202,12 @@ Un sistema che:
 
 ---
 
-# 🌟 Git vs il caos
+<!-- _class: lead -->
 
-| Senza Git | Con Git |
-|-----------|---------|
-| 50 file con nomi assurdi | 1 progetto, infinite versioni |
-| "Chi ha rotto il codice?" | Tracciato ogni singolo byte |
-| Lavoro sovrascritto | Merge intelligente |
-| Backup su chiavetta USB | Cloud infinito |
+# ⚔️ SFIDA
+
+**Trova l'errore nel nome file:**
+`progetto_pygame_FINALISSIMO_vers3_corretto_ok_davvero.py`
 
 ---
 
@@ -243,7 +232,6 @@ Un sistema che:
 - Ottima per **condividere progetti**, collaborare, imparare  
 - Gratuita per studenti  
 - Piena di progetti da cui trarre idee… o traumi  
-- Quella cosa che vi servirà per consegnare i progetti al prof 👀
 
 ---
 
@@ -270,6 +258,16 @@ Ricordate: questo username potrebbe finire sul vostro CV!
 - `nettonoob123`
 
 *Fra 5 anni ringrazierete di aver scelto qualcosa di professionale* 💼
+
+---
+
+# ⚔️ SFIDA
+
+**Quale di questi username usereste per candidarvi a Google?**
+a) `l33t_h4ck3r`
+b) `giulia.verdi`
+c) `pizza_pasta_mandolino`
+
 
 ---
 
@@ -485,7 +483,6 @@ img {
 
 **Ogni progetto dovrebbe avere:**
 - ✅ `README.md` - la guida del progetto
-- ✅ `.gitignore` - file da ignorare (es. `__pycache__`)
 - ✅ `LICENSE` - come possono usare il tuo codice
 - ✅ Struttura organizzata:
   ```
@@ -507,30 +504,6 @@ img {
 
 ![width:800px](./github/github-repo-final.png)
 
----
-
-# 🗂️ Il .gitignore: l'amico invisibile
-
-❌❌❌❌❌ File temporanei, privati o inutili, da NON caricare su GitHub:
-
-```
-# Python
-__pycache__/
-*.pyc
-*.pyo
-
-# Thonny
-.thonny/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# File personali
-password.txt
-```
-
-*Git ignora questi file come voi ignorate i messaggi della chat di classe* 🙈
 
 ---
 
@@ -541,8 +514,7 @@ password.txt
   - ✔️ “Risolto bug collisione alieno”  
 2. **Documentazione** - README chiaro e aggiornato
 3. **Cartelle ordinate** - (`src`, `assets`…) 
-4. **Usare `.gitignore`** - per evitare di caricare file inutili  
-5. **Usa nomi file significativi** - No file chiamati `prova.py`, `pippo.py`, `codice_fatto_male.py` 😬  
+4. **Usa nomi file significativi** - No file chiamati `prova.py`, `pippo.py`, `codice_fatto_male.py` 😬  
 
 ---
 
@@ -567,26 +539,10 @@ password.txt
 - ✅ GitHub è la tua vetrina = social per sviluppatori
 - ✅ README = prima impressione del progetto
 - ✅ Commit message = diario del codice
-- ✅ .gitignore = privacy per il codice
 - ✅ Thonny è il tuo laboratorio
 - ✅ “Colpisci Alieno” è il tuo primo capolavoro intergalattico 👾🚀  
 
 🎉 Ora è ufficiale: sei uno sviluppatore "pubblicato" che **non rinomina file a caso** 🥳
-
----
-
-# 🚀 Prossimi passi
-
-**Nei prossimi incontri su questo tema:**
-- Git da terminale in Thonny
-- Clone e push
-- Branch e merge
-- Pull request
-- Gestione conflitti
-- Workflow professionali
-- GitHub Actions (CI/CD)
-
-*Diventerete talmente bravi che vorrete versionare anche i compiti di letteratura!* 📚
 
 ---
 <style scoped>
@@ -596,10 +552,12 @@ img {
 }
 </style>
 
-## Grazie per l'attenzione...
+
 
 <br>
 
 ![width:300px](./pbg-qr-code.png)
+
+> *Diventerete talmente bravi che vorrete versionare anche i compiti di letteratura!* 
 
 > *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
