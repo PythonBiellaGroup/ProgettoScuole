@@ -181,6 +181,7 @@ VITTORIA_PUNTEGGIO = 20  # Punteggio minimo per vincere
 # Variabili di stato del gioco
 punteggio = 0
 game_over = False
+musica_vittoria_suonata = False
 ```
 
 ---
@@ -239,7 +240,6 @@ if game_over:
         tony.image = "tony2"
         tony.pos = 400, 200
         tony.draw()
-        sounds.last_note.play()
 ```
 
 ---
@@ -326,9 +326,10 @@ def update():
 
 ```python
 def reset_gioco():
-    global punteggio, game_over
+    global punteggio, game_over, musica_vittoria_suonata
     punteggio = 0
     game_over = False
+    musica_vittoria_suonata = False  # Reset variabile musica finale
     tony.pos = 100, 100
     tony.image = "tony"
     piazza_nota()
@@ -363,8 +364,12 @@ def piazza_nota():
     nota.y = randint(70, (HEIGHT - 70))
 
 def tempo_scaduto():
-    global game_over
+    global game_over, musica_vittoria_suonata
     game_over = True
+    # fai partire la canzone per la vittoria solo se si ha vinto (e falla partire solo una volta)
+    if punteggio > VITTORIA_PUNTEGGIO and not musica_vittoria_suonata:
+        sounds.last_note.play()
+        musica_vittoria_suonata = True    
 ```
 
 ---
