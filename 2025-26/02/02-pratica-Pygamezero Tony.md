@@ -133,8 +133,7 @@ style: |
 
 - movimento manuale del protagonista tramite **tastiera**  
 - gestione dello **stato del gioco**  
-- timer e **clock.schedule()**  
-- collisioni con **colliderect()**  
+- timer con **clock.schedule()** e  collisioni con **colliderect()**  
 - aggiornamento degli sprite (immagini)
 - suoni, punteggi, game over  
 - schermata di vittoria e riavvio del gioco
@@ -195,7 +194,7 @@ nota = Actor("nota musicale")
 
 ---
 
-## La funzione draw() - Parte 1
+## Funzione `draw()` pt 1
 
 ```python
 def draw():
@@ -218,7 +217,7 @@ def draw():
 
 ---
 
-## La funzione draw() - Parte 2: Game Over
+## Funzione `draw()` pt 2: Game Over
 
 ```python
 if game_over:
@@ -239,7 +238,7 @@ if game_over:
 
 ---
 
-## La funzione draw() - Parte 3: Sconfitta
+## Funzione `draw()` pt 3: Sconfitta
 
 ```python
     else:
@@ -283,7 +282,7 @@ if nota_presa:
 
 ---
 
-## La funzione update() completa
+## Funzione `update()` completa
 
 ```python
 def update():
@@ -358,7 +357,7 @@ def tempo_scaduto():
 
 ---
 
-## Come funziona Actor.move?
+## Come funziona `Actor.move`?
 
 <style scoped>
 section {
@@ -395,7 +394,7 @@ if keyboard.left:
 
 ---
 
-## Collisioni: collidepoint o colliderect
+## `collidepoint` o `colliderect` ?
 
 ```
 collidepoint((x, y))          colliderect(other)
@@ -526,7 +525,7 @@ nota.y = randint(70, HEIGHT - 70)
 
 ---
 
-## Struttura consigliata delle cartelle
+## Struttura cartelle consigliata
 
 ```
 tony_musica/
@@ -593,9 +592,7 @@ Il controllo dello stato è fondamentale per gestire correttamente il flusso del
 - Usate la creatività!
 ---
 
-## Conclusione
-
-🎮🎮🎮🎮 Hai imparato 🎮🎮🎮🎮
+## 🎮🎮 Hai imparato 🎮🎮
 
 * Movimento a tastiera con controllo dello stato
 * Collisioni con Actor
