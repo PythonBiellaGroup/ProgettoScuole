@@ -122,7 +122,7 @@ style: |
 
 # 🐍 Versionamento del codice, Git & GitHub
 
-**Ovvero: perché il tuo codice merita meglio di "alieno_VERO_definitivo_v2_QUESTO_SI.py"**
+**Ovvero: il social network dove si condivide codice, non foto**
 
 <br>
 
@@ -245,40 +245,6 @@ Un sistema che:
   - ❌ `odioinformatica`
 
 **Pro tip:** Usate l'email della scuola per vantaggi studente!
-
----
-
-# 🎯 Username: scegli con saggezza
-
-Ricordate: questo username potrebbe finire sul vostro CV!
-
-**Hall of Shame:**
-- `xXx_CodeMaster_xXx`
-- `programmatore_super_mega`
-- `nettonoob123`
-
-*Fra 5 anni ringrazierete di aver scelto qualcosa di professionale* 💼
-
----
-
-# ⚔️ SFIDA
-
-**Quale di questi username usereste per candidarvi a Google?**
-a) `l33t_h4ck3r`
-b) `giulia.verdi`
-c) `pizza_pasta_mandolino`
-
-
----
-
-# ⚔️ SFIDA
-
-**Quale di questi username usereste per candidarvi a Google?**
-a) `l33t_h4ck3r`
-b) `giulia.verdi`
-c) `pizza_pasta_mandolino`
-
-*Se avete scelto (a) o (c), potreste pentiverne in futuro...* 😬
 
 ---
 
@@ -462,6 +428,16 @@ img {
 
 ---
 
+<br>
+
+**Perché serve il *commit***  
+Un *commit* salva una “versione” del tuo progetto in un dato momento. È come scattare una fotografia allo stato del codice: puoi tornare indietro, confrontare le modifiche e lavorare in modo più sicuro.
+
+**Cos’è il *commit message***  
+È un breve messaggio che descrive cosa hai cambiato in quel commit. Serve a te e ai tuoi collaboratori per capire rapidamente il motivo delle modifiche senza dover leggere tutto il codice.
+
+---
+
 # 💬 L'arte del commit message
 
 **❌❌❌❌❌ Messaggi terribili:**
@@ -475,7 +451,7 @@ img {
 - "Risolto bug movimento alieno"
 - "Implementato sistema di livelli"
 
-*Scrivete come se il vostro futuro io dovesse capire!*
+*Scrivete come se il vostro futuro io dovesse capire cosa hai modificato e perché!*
 
 ---
 
