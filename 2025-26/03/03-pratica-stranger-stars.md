@@ -130,17 +130,14 @@ style: |
 
 ## Perché questo gioco?
 
-🎯 In questo progetto impariamo:
+🎯 Con questo gioco vedremo:
 
-* gestione del **mouse** per cliccare i personaggi
+* gestione del **mouse** per cliccare i personaggi (come per l'Alieno)
 * creazione e movimento di più **Actor**
 * logica dei **livelli** con difficoltà crescente
 * gestione dello **stato di gioco** (scelta, gioco, game over)
-* creazione del **Sottosopra** → inversione gravità
-* collisioni tramite **collidepoint()**
+* collisioni tramite **collidepoint()** (come per l'Alieno)
 * animazioni con **oscillazione sinusoidale**
-
-Un gioco più complesso e più dinamico!
 
 ---
 
@@ -150,13 +147,12 @@ Un gioco più complesso e più dinamico!
 img { display: block; margin: 0 auto; }
 </style>
 
-![width:400px](./strangerstars-anteprima.png)
+![width:400px](./anteprima-gioco.png)
 
 > Clicca il personaggio giusto tra quelli che cadono!
-> Sopravvivi al Sottosopra e supera i 10 livelli!
+> Sopravvivi al Sottosopra e raggiungi il livello piu alto che puoi
 
 ---
-
 ## Configurazione iniziale
 
 ```python
@@ -165,19 +161,45 @@ import pgzrun
 import random, math
 
 TITLE = "Stranger Stars"
+COLORE_TESTO = (255, 255, 255)
 WIDTH = 800
 HEIGHT = 600
+...
 LISTA_PERSONAGGI = ["dustin", "lucas", "mike", "undici", "will"]
 ```
+---
+## Variabili di Stato
 
+```python
+gioco_terminato = False
+livello_corrente = 1
+fase_scelta_personaggio = True
+personaggio_obiettivo = None 
+personaggi_da_selezionare = [] 
+lista_personaggi_in_gioco = []
+modalita_sottosopra = False
+timer_sottosopra = random.randint(
+    TEMPO_MIN_SOTTOSOPRA, TEMPO_MAX_SOTTOSOPRA
+)
+```
 ---
 
 ## Schermata iniziale: scelta personaggio
 
 ```python
 def mostra_schermata_scelta_personaggio():
-    for nome in LISTA_PERSONAGGI:
-        Actor(nome)
+    global personaggi_da_selezionare
+
+    personaggi_da_selezionare = []
+    spaziatura = WIDTH / (len(LISTA_PERSONAGGI) + 1)
+
+    for indice, nome in enumerate(LISTA_PERSONAGGI):
+        attore = Actor(nome)
+        attore.x = (indice + 1) * spaziatura
+        attore.y = HEIGHT / 2
+
+        personaggi_da_selezionare.append(attore)
+
 ```
 
 📌 I personaggi vengono disposti in fila e il giocatore sceglie chi salvare.
@@ -191,20 +213,80 @@ def draw():
     screen.clear()
     disegna_sfondo()
 
-    if fase_scelta_personaggio:
-        # Mostra scelta
-        return
+    if modalita_sottosopra:
+        screen.blit("sfondo-sottosopra", (-200, -50))
+    else:
+        screen.blit("sfondo", (-150, -50))
+
 ```
 
 Mostra sfondo, testo e personaggi in base allo **stato del gioco**.
 
 ---
+## Funzione `draw()` pt 2: Scelta Personaggio
 
-## Funzione `draw()` pt 2: Game Over
+```python
+if fase_scelta_personaggio:
+        screen.draw.text(
+            "Scegli il personaggio da salvare",
+            center=(CENTRO_X, 100),
+            fontsize=40,
+            color="white",
+        )
+        for personaggio in personaggi_da_selezionare:
+            personaggio.draw()
+        return
+```
+---
+## Funzione `draw()` pt 3: Interfaccia
+
+```python
+screen.draw.text(
+        f"Livello: {livello_corrente}",
+        topleft=(10, 10),
+        fontsize=30,
+        color="yellow",
+    )
+
+    screen.draw.text(
+        f"Trova: {personaggio_obiettivo}",
+        topright=(WIDTH - 10, 10),
+        fontsize=25,
+        color="lightblue",
+    )
+
+    if modalita_sottosopra:
+        screen.draw.text(
+            "BENVENUTI NEL SOTTOSOPRA!",
+            center=(CENTRO_X, 50),
+            fontsize=35,
+            color="red",
+        )
+
+```
+Mostra livello e obiettivo.
+
+---
+## Funzione `draw()` pt 4: Disegna Personaggi
+
+```python
+    for attore in lista_personaggi_in_gioco:
+        attore.draw()
+
+        if attore.image == personaggio_obiettivo:
+            screen.draw.circle((attore.x, attore.y), 40, (255, 255, 0))
+
+```
+Se è quello da trovare → cerchio giallo!
+---
+## Funzione `draw()` pt 5: Game Over
 
 ```python
 if gioco_terminato:
-    mostra_messaggio("GAME OVER", "Clicca per ricominciare...")
+    mostra_messaggio(
+            "GAME OVER\nHai raggiunto il livello: " + str(livello_corrente),
+            "Clicca per ricominciare...",
+        )
     return
 ```
 
@@ -212,42 +294,18 @@ if gioco_terminato:
 
 * clicchi il personaggio sbagliato
 * un personaggio esce dallo schermo
-
----
-
-## Interfaccia durante il gioco
-
-```python
-def disegna_interfaccia_gioco():
-    screen.draw.text(f"Livello: {livello}", topleft=(10, 10))
-    screen.draw.text(f"Trova: {personaggio}", topright=(WIDTH-10, 10))
-```
-
-Mostra livello e obiettivo.
-
----
-
-## Personaggi in caduta
-
-```python
-def disegna_personaggi():
-    for a in lista_personaggi:
-        a.draw()
-```
-
-Se è quello da trovare → cerchio giallo!
-
 ---
 
 ## Funzione `update()` completa
 
 ```python
 def update():
+    global lista_personaggi_in_gioco, timer_sottosopra
     if fase_scelta or gioco_terminato:
         return
 
-    if len(lista)==0:
-        lista = genera_personaggi_in_caduta(livello)
+    if len(lista_personaggi_in_gioco)==0:
+        lista_personaggi_in_gioco = genera_personaggi_in_caduta(livello)
         return
 
     muovi_personaggi()
@@ -257,28 +315,68 @@ def update():
 Logica principale del gioco.
 
 ---
+## Funzione `update()`: muovere gli actor
+
+```python
+def muovi_personaggi():
+    for attore in lista_personaggi_in_gioco:
+        muovi_verticalmente(attore)
+        muovi_orizzontalmente(attore)
+        controlla_bordi_orizzontali(attore)
+        cambia_direzione_casuale(attore)
+```
+
+Il movimento degli actor è definito da 4 funzioni: due di movimento e due di controllo.
+
+---
 
 ## Movimento verticale
 
 ```python
-if modalita_sottosopra:
-    attore.y -= attore.velocita_y
-else:
-    attore.y += attore.velocita_y
+    if modalita_sottosopra:
+        attore.y -= attore.velocita_y
+            attiva_game_over()
+    else:
+        attore.y += attore.velocita_y
+        if attore.y > HEIGHT + 80:
+            attiva_game_over()
 ```
 
-🌑 Nel Sottosopra la gravità è invertita!
+Nel Sottosopra il movimento dei personaggi è invertito!
 
 ---
 
 ## Oscillazione laterale
 
 ```python
-osc = math.sin(attore.timer * 0.1) * attore.oscillazione_max
-attore.x += attore.velocita_x + osc
+    angolo = attore.timer * 0.1
+    oscillazione = math.sin(angolo) * attore.oscillazione_max
+
+    attore.x += attore.velocita_x + oscillazione
+
+    attore.timer += 1
 ```
 
-🏄 Movimento ondulato → più difficile cliccarli.
+Movimento ondulato → più difficile cliccarli.
+
+---
+## Funzioni di controllo
+
+```python
+def controlla_bordi_orizzontali(attore):
+    if attore.x < 0:
+        attore.x = 0
+        attore.velocita_x = -attore.velocita_x
+
+    if attore.x > WIDTH:
+        attore.x = WIDTH
+        attore.velocita_x = -attore.velocita_x
+
+def cambia_direzione_casuale(attore):
+    if random.random() < 0.01:
+        attore.velocita_x = random.randint(VELOCITA_LATERALE_MIN, VELOCITA_LATERALE_MAX)
+
+```
 
 ---
 
@@ -292,7 +390,7 @@ def on_mouse_down(pos):
         gestisci_click_durante_gioco(pos)
 ```
 
-🎯 **collidepoint()** per capire su quale personaggio hai cliccato.
+`collidepoint()` per capire su quale personaggio hai cliccato.
 
 ---
 
@@ -321,7 +419,6 @@ Effetti:
 * gravità invertita
 * velocità aumentata
 * posizioni ribaltate
-* sfondo rosso/scuro
 
 ---
 
@@ -345,7 +442,7 @@ def resetta_gioco():
     fase_scelta = True
 ```
 
-🔄 Torna alla schermata iniziale.
+Torna alla schermata iniziale.
 
 ---
 
@@ -383,15 +480,6 @@ D) Il gioco non parte
 👉 **Risposta: C**
 
 Il Sottosopra funziona solo se invertiamo manualmente il movimento verticale.
-
----
-
-## Debugging tips 🐛
-
-* Personaggi troppo veloci → controlla velocita_base
-* Sottosopra troppo frequente → timer_sottosopra
-* Collisioni strane → controlla collidepoint
-* Personaggi bloccati → controlla rimbalzo ai bordi
 
 ---
 
