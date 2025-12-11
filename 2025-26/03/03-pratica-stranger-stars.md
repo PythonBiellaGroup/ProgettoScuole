@@ -192,25 +192,22 @@ timer_sottosopra = random.randint(
 ```python
 def mostra_schermata_scelta_personaggio():
     global personaggi_da_selezionare
-
     personaggi_da_selezionare = []
     spaziatura = WIDTH / (len(LISTA_PERSONAGGI) + 1)
-
-    for indice, nome in enumerate(LISTA_PERSONAGGI):
+    indice = 0
+    for nome in LISTA_PERSONAGGI:
         attore = Actor(nome)
         attore.x = (indice + 1) * spaziatura
         attore.y = HEIGHT / 2
-
         personaggi_da_selezionare.append(attore)
-
+        indice += 1
 ```
-🎭 **Disposizione dei personaggi**: tutti i personaggi sono distribuiti orizzontalmente in modo equidistante. 
+🎭 **Disposizione dei personaggi**: personaggi distribuiti orizzontalmente in modo equidistante. 
 Calcolo della spaziatura: dividiamo la larghezza dello schermo per il numero di personaggi +1 (spazio anche ai margini).
-📌 Il giocatore sceglie il personaggio da salvare.
 
 ---
 
-## Funzione `draw()` pt 1
+## `draw()` pt 1
 
 ```python
 def draw():
@@ -226,7 +223,7 @@ def draw():
 🎨 **Rendering dello sfondo**: `draw()` viene chiamata automaticamente 60 volte al secondo da Pygame Zero. Prima cancelliamo tutto (`screen.clear()`), poi disegniamo lo sfondo appropriato in base allo stato del gioco.
 
 ---
-## Funzione `draw()` pt 2: Scelta Personaggio
+## `draw()` pt 2: Scelta Personaggio
 
 ```python
 if fase_scelta_personaggio:
@@ -244,19 +241,17 @@ if fase_scelta_personaggio:
 
 ---
 
-## Funzione `draw()` pt 3: Interfaccia
+## `draw()` pt 3: Interfaccia
 
 ```python
 screen.draw.text(
     "Livello: " + str(livello_corrente),
       topleft=(10, 10), fontsize=, color="yellow"
   )
-
 screen.draw.text(
       "Trova: " + str(personaggio_obiettivo),
       topright=(WIDTH - 10, 10), fontsize=25, color="lightblue"
   )
-
 if modalita_sottosopra:
       screen.draw.text(
           "BENVENUTI NEL SOTTOSOPRA!",
@@ -267,27 +262,30 @@ if modalita_sottosopra:
 🎯 Mostriamo sempre livello e obiettivo.
 
 ---
-## Funzione `draw()` pt 4: Disegna Personaggi
+## `draw()` pt 4: Disegna Personaggi
 
 ```python
-    for attore in lista_personaggi_in_gioco:
-        attore.draw()
+for attore in lista_personaggi_in_gioco:
+    attore.draw()
 
-        if attore.image == personaggio_obiettivo:
-            screen.draw.circle((attore.x, attore.y), 40, (255, 255, 0))
+    if attore.image == personaggio_obiettivo:
+        screen.draw.circle((attore.x, attore.y), 40, (255, 255, 0))
 
 ```
 🎯 **Evidenziazione dell'obiettivo**: iteriamo su tutti i personaggi in gioco e li disegniamo. Se è quello da trovare aggiungiamo attorno un cerchio giallo (per rendere meno difficile identificare rapidamente il personaggio corretto)
 
 ---
-## Funzione `draw()` pt 5: Game Over
+## `draw()` pt 5: Game Over
 
 ```python
 if gioco_terminato:
-    mostra_messaggio(
-            "GAME OVER\nHai raggiunto il livello: " + str(livello_corrente),
-            "Clicca per ricominciare...",
-        )
+    screen.draw.text(
+      "GAME OVER\nHai raggiunto il livello: " + str(livello_corrente), 
+      fontsize=60, center=CENTRO, color=COLORE_TESTO)
+    screen.draw.text(
+        "Clicca per ricominciare...", 
+        fontsize=30, center=(CENTRO_X, CENTRO_Y + 60), color=COLORE_TESTO
+    )
     return
 ```
 
@@ -315,6 +313,42 @@ def update():
 
 ⚙️ Gestisce la logica principale di gioco.
 **REMEMBER**: `update()` viene chiamata 60 volte al secondo.
+
+---
+
+## Generazione dei personaggi: pt 1
+```python
+def scegli_personaggi_livello(num_extra):
+    lista = [personaggio_obiettivo]
+    altri = [p for p in LISTA_PERSONAGGI if p != personaggio_obiettivo]
+
+    for _ in range(num_extra):
+        lista.append(random.choice(altri))
+
+    return lista
+```
+⚙️ **Creazione personaggi**: prima vado a capire quanti personaggi devo generare per il livello corrente (il personaggio da salvare e un numero di personaggi che cresce in base al livello). Ogni giocatore poi viene creato con una posizione iniziale ed una velocità in verticale e in orizzontale.
+
+---
+## Generazione dei personaggi: pt 2
+```python
+def genera_personaggi_in_caduta(numero_extra):
+    lista_nomi = scegli_personaggi_livello(numero_extra)
+    nuovi_attori = []
+
+    for nome in lista_nomi:
+        attore = Actor(nome)
+        attore.x = random.randint(100, WIDTH - 100)
+        attore.y = -50 if not modalita_sottosopra else HEIGHT + 50
+        velocita_base = random.uniform(livello_corrente * VELOCITA_BASE_MIN, livello_corrente * VELOCITA_BASE_MAX)
+        attore.velocitabase = velocita_base
+        attore.velocita_y = velocita_base * (VELOCITA_SOTTOSOPRA_MULT if modalita_sottosopra else 1)
+        attore.velocita_x = random.randint(VELOCITA_LATERALE_MIN, VELOCITA_LATERALE_MAX)
+        attore.oscillazione_max = random.uniform(OSCILLAZIONE_MIN, OSCILLAZIONE_MAX)
+        attore.timer = random.randint(0, 1000)
+        nuovi_attori.append(attore)
+    return nuovi_attori
+```
 
 ---
 ## Funzione `update()`: muovere gli actor
@@ -386,13 +420,54 @@ def cambia_direzione_casuale(attore):
 
 ```python
 def on_mouse_down(pos):
-    if fase_scelta:
-        gestisci_scelta(pos)
-    else:
-        gestisci_click_durante_gioco(pos)
+    global fase_scelta_personaggio
+
+    if gioco_terminato:
+        resetta_gioco()
+        return
+
+    if fase_scelta_personaggio:
+        gestisci_scelta_personaggio(pos)
+        return
+
+    gestisci_click_durante_gioco(pos)
 ```
 
 🖱️ **Routing degli input**: Questa funzione dirige il click alla funzione appropriata in base allo stato del gioco.
+
+---
+
+## Uso di `collidepoint()`: pt 1
+```python
+def gestisci_scelta_personaggio(pos):
+    global fase_scelta_personaggio, personaggio_obiettivo
+
+    for attore in personaggi_da_selezionare:
+        if attore.collidepoint(pos):
+            personaggio_obiettivo = attore.image
+            fase_scelta_personaggio = false
+            return
+```
+📌 **Input dell'utente**: qui il giocatore, con un click, sceglie il personaggio da salvare.
+
+---
+## Uso di `collidepoint()`: pt 2
+
+```python
+def gestisci_click_durante_gioco(pos):
+    for attore in lista_personaggi_in_gioco:
+        if attore.collidepoint(pos):
+            if attore.image == personaggio_obiettivo:
+                avanza_livello()
+            else:
+                attiva_game_over()
+            return 
+```
+
+📌 **Input dell'utente**: ora tramite `collidepoint()` abbiamo 3 situazioni:
+1. il personaggio è quello giusto: avanzo di livello
+2. il personaggio è quello sbagliato: game over
+3. non ho cliccato su nessun personaggio: il gioco continua
 
 ---
 
@@ -412,27 +487,25 @@ def avanza_livello():
 ## Logica del Sottosopra
 
 ```python
-def gestisci_timer_sottosopra():
-    global timer_sottosopra
-
-    timer_sottosopra -= 1 / 60
-
-    if timer_sottosopra <= 0:
-        attiva_sottosopra()
-        timer_sottosopra = random.randint(TEMPO_MIN_SOTTOSOPRA, TEMPO_MAX_SOTTOSOPRA)
-
 def attiva_sottosopra():
     modalita_sottosopra = not modalita_sottosopra
     for attore in lista_personaggi_in_gioco:
         aggiorna_velocita_sottosopra(attore)
         ribalta_posizione_verticale(attore)
+
+def gestisci_timer_sottosopra():
+    global timer_sottosopra
+    timer_sottosopra -= 1 / 60
+    if timer_sottosopra <= 0:
+        attiva_sottosopra()
+        timer_sottosopra = random.randint(TEMPO_MIN_SOTTOSOPRA, TEMPO_MAX_SOTTOSOPRA)
 ```
 
  🌑  `attiva_sottosopra()` inverte lo stato booleano, aumenta la velocità di tutti i personaggi esistenti e ne ribalta le posizioni verticali.
 
 ---
 
-## Logica del Sottosopra: posizione e velocità
+## Posizione e velocità nel sottosopra
 
 ```python
 def aggiorna_velocita_sottosopra(attore):
@@ -440,19 +513,15 @@ def aggiorna_velocita_sottosopra(attore):
         attore.velocita_y = attore.velocita_base * VELOCITA_SOTTOSOPRA_MULT
     else:
         attore.velocita_y = attore.velocita_base
-
-
 def ribalta_posizione_verticale(attore):
     nuova_y = HEIGHT - attore.y
-
     if modalita_sottosopra:
         attore.y = min(nuova_y, HEIGHT + 50)
     else:
         attore.y = max(nuova_y, -50)
-
 ```
 
-⚡ **Modificatori del Sottosopra**:  moltiplichiamo la velocità base per 1.3 quando si entra nel Sottosopra (personaggi più veloci). Usiamo `velocita_base` per evitare moltiplicazioni cumulative. La seconda funzione ribalta matematicamente la posizione verticale (se era a 100, va a 500 in una finestra di 600). `min/max` impediscono che i personaggi finiscano troppo fuori schermo, mantenendoli entro margini ragionevoli di ±50 pixel.
+⚡ **Modificatori del Sottosopra**: Usiamo `velocita_base` per evitare moltiplicazioni cumulative. La seconda funzione ribalta matematicamente la posizione verticale. `min/max` impediscono che i personaggi finiscano troppo fuori schermo.
 
 ---
 ## Game Over
@@ -501,8 +570,8 @@ stranger_stars/
 💡 Idee per migliorare Stranger Stars:
 
 * effetti sonori
-* boss finale
-* punteggio e classifica
+* oggetti che ostacolano la caduta dei personaggi
+* salvataggio del punteggio e classifica
 
 ---
 
