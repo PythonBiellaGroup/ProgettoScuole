@@ -248,12 +248,12 @@ if fase_scelta_personaggio:
 
 ```python
 screen.draw.text(
-    f"Livello: {livello_corrente}",
+    "Livello: " + str(livello_corrente),
       topleft=(10, 10), fontsize=, color="yellow"
   )
 
 screen.draw.text(
-      f"Trova: {personaggio_obiettivo}",
+      "Trova: " + str(personaggio_obiettivo),
       topright=(WIDTH - 10, 10), fontsize=25, color="lightblue"
   )
 
