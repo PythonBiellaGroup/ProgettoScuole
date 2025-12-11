@@ -120,7 +120,8 @@ style: |
 ---
 
 
-# 🐛 Debug Wars: La Vendetta dello StackTrace
+# 🐛 Python ti odia quando sbagli? 
+## No, vuole solo parlarti: guida allo StackTrace
 
 **Ovvero: come sopravvivere agli errori Python senza lanciare il PC dalla finestra ma usando Thonny (il nostro fedele alleato)**
 
@@ -225,8 +226,7 @@ Python non può fare `"Oggi compi " + 18` perché non sa se vuoi:
 - `"Oggi compi " + "18"` (tutto stringa)
 
 **Fix** (3 modi):
-```python
-# Metodo 1: Converti esplicitamente
+<pre><code class="language-python"># Metodo 1: Converti esplicitamente
 messaggio = messaggio + " Oggi compi " + str(eta) + " anni!"
 
 # Metodo 2: Usa f-string (il migliore!)
@@ -234,7 +234,7 @@ messaggio = f"{messaggio} Oggi compi {eta} anni!"
 
 # Metodo 3: Usa format()
 messaggio = messaggio + " Oggi compi {} anni!".format(eta)
-```
+</code></pre>
 
 **Lezione**: Python è **fortemente tipizzato**. Non mischia i tipi automaticamente!
 
@@ -450,67 +450,6 @@ consumo_giornaliero = consumo_totale / giorni  # ☠️
 
 ---
 
-## 🏆 CHALLENGE FINALE: Trova tutti e 3!
-```python
-def analizza_voti(voti_studente_1, voti_studente_2):
-    """Confronta i voti di due studenti"""
-    
-    # Calcola medie
-    media_1 = sum(voti_studente_1) / len(voti_studente_1)
-    media_2 = sum(voti_studente_2) / len(voti_studente_2)
-    
-    print("Media studente 1: " + media_1)
-    print("Media studente 2: " + media_2)
-    
-    # Chi ha la media più alta?
-    if media_1 > media_2:
-        differenza = media_1 - media_2
-        print("Studente 1 ha " + differenza + " punti in più")
-    else:
-        differenza = media_2 - media_1
-        print("Studente 2 ha " + differenza + " punti in più")
-
-# Test
-alice = [8, 9, 7, 8]
-bob = []
-
-analizza_voti(alice, bob)
-```
-
----
-
-## 🤔 Quanti errori ci sono nel codice?
-
-**A)** 1 errore (facile!)  
-**B)** 2 errori (medio)  
-**C)** 3 errori (difficile!)  
-**D)** Il codice funziona perfettamente (fiducia cieca)
-
-*Pensaci bene... ci sono trabocchetti ovunque!*
-
----
-
-## ✅ RISPOSTA CHALLENGE FINALE
-
-**🐛🐛🐛 Errori presenti** (tutti e 3!):
-
-1. **ZeroDivisionError** (riga 5): Bob ha lista vuota → `len(voti_studente_2) = 0`
-
-2. **TypeError** (riga 7): Non puoi concatenare stringhe e numeri float!
-   ```python
-   print("Media studente 1: " + media_1)  # ☠️
-   # Serve: print("Media studente 1: " + str(media_1))
-   ```
-
-3. **TypeError** (riga 13 e 17): Stessa cosa per la differenza!
-   ```python
-   print("Studente 1 ha " + differenza + " punti in più")  # ☠️
-   ```
-
-**Se hai trovato tutti e 3, sei un campione del debugging!** 🏆
-
----
-
 ## 🎓 RECAP: Le Regole d'Oro
 
 1. **Leggi lo stacktrace dall'alto verso il basso** (l'errore è in fondo)
@@ -550,19 +489,6 @@ analizza_voti(alice, bob)
 
 > *"Il codice che funziona al primo tentativo è sospetto."*
 > — Ogni programmatore esperto
-
----
-
-## 🎮 HOMEWORK CHALLENGE
-
-Crea un programma che:
-1. Chiede all'utente di inserire N numeri (usa `input()`)
-2. Li salva in una lista
-3. Calcola media, massimo e minimo
-4. **Gestisce TUTTI i possibili errori**:
-   - Lista vuota
-   - Input non numerico
-   - Divisioni per zero
 
 ---
 
