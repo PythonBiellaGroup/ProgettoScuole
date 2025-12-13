@@ -316,6 +316,7 @@ IndexError: list index out of range
 ---
 
 # Tips per Leggere gli StackTrace 💡
+(repetita iuvant!)
 
 1. **Non farti prendere dal panico** (respira profondamente)
 2. **Leggi dal basso verso l'alto** (sì, sempre)
@@ -452,14 +453,15 @@ consumo_giornaliero = consumo_totale / giorni  # ☠️
 
 ## 🎓 RECAP: Le Regole d'Oro
 
-1. **Leggi lo stacktrace dall'alto verso il basso** (l'errore è in fondo)
-2. **Guarda il TIPO di errore**:
+1. **Leggi lo stacktrace dal basso verso l'alto** (l'errore è in fondo)
+2. **Cerca riferimenti al tuo file** (non alle librerie che usi)
+3. **Guarda il TIPO di errore**:
    - `TypeError` → hai mescolato tipi incompatibili (str + int)
    - `IndexError` → indice fuori dai limiti della lista
    - `ZeroDivisionError` → hai diviso per zero
-3. **Gli indici partono da 0** (non dimenticarlo MAI!)
-4. **Valida gli input** (liste vuote, divisioni per zero)
-5. **Converti i tipi esplicitamente** (usa `str()`, `int()`, `float()`)
+4. **Gli indici partono da 0** (non dimenticarlo MAI!)
+5. **Valida gli input** (liste vuote, divisioni per zero)
+6. **Converti i tipi esplicitamente** (usa `str()`, `int()`, `float()`)
 
 ---
 
