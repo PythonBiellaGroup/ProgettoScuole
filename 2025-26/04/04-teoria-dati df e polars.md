@@ -506,8 +506,9 @@ Tempo: 20 secondi... ⏱️
 
 ---
 
-# ✅ Risposta SFIDA #3
-Errore: Usare and invece di &!
+# ✅ Risposta SFIDA
+
+**Errore**: Usare `and` invece di `&`!
 
 Versione corretta:
 
