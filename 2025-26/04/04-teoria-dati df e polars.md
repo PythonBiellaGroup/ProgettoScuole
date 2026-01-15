@@ -489,6 +489,25 @@ intervallo = df[10:20]
 
 ---
 
+# 🎲 Sample: pesca a caso!
+```python
+# Pesca 5 righe casuali
+df.sample(n=5)
+# Pesca il 10% del dataset
+df.sample(fraction=0.1)
+# Pesca con "rimessa" (stessa riga può uscire più volte)
+df.sample(n=100, with_replacement=True)
+# Pesca riproducibile (stesso "caso" ogni volta)
+df.sample(n=10, seed=42)
+```
+
+**Quando è utile?**
+- 🎮 Selezionare un numero di record in modo casuale (piccolo dataset di test)
+- 🔬 Analisi statistica (campionamento)
+- 🎰 Quando vuoi un po' di caos controllato!
+
+---
+
 # 🎯 SFIDA: Debug Challenge!
 
 Cosa c'è di sbagliato qui?
