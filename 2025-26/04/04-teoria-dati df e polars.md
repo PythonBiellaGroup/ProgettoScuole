@@ -433,13 +433,13 @@ D) Crasherà sicuramente 💥
 ---
 
 # ✅ Risposta SFIDA
-B) Seleziona solo gli studenti con voto > 90
+B) Seleziona solo gli studenti con voto > 9
 
 Il metodo `.filter()` è come un setaccio:
 
 Lascia passare solo le righe che soddisfano la condizione
 `pl.col("voto")` seleziona la colonna "voto"
-`> 90` è la condizione da verificare
+`> 9` è la condizione da verificare
 
 È come dire: "Ehi Polars, dammi solo i secchioni!" 🤓
 
@@ -459,8 +459,8 @@ df.filter(
 
 # Filtrare con OR
 df.filter(
-    (pl.col("voto") > 90) | 
-    (pl.col("voto") < 60)
+    (pl.col("voto") > 9) | 
+    (pl.col("voto") < 6)
 )
 ```
 
