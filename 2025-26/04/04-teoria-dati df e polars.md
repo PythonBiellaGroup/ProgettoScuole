@@ -171,7 +171,7 @@ Dati sporchi = AI confusa (garbage in, garbage out!)
 1. RACCOLTA 📥 → Dati grezzi (caotici, disordinati)
 2. PULIZIA 🧹 → Rimuovere errori e duplicati
 3. ANALISI 🔍 → Trovare pattern interessanti
-4. VISUALIZZAZIONE 📊 → Grafici fighi
+4. VISUALIZZAZIONE 📊 → Grafici che catturano l'attenzione
 5. AI/ML 🤖 → Predizioni e decisioni intelligenti
 
 
@@ -235,11 +235,10 @@ Harry,Stupefy,15,1
 Harry,Expecto Patronum,20,1
 ```
 
-**In pratica:**
 - Prima riga = nomi delle colonne (header)
 - Ogni riga = un record
 - Le virgole separano le colonne
-- È un semplice file di testo! (apribile con Notepad)
+- È un semplice file di testo (apribile con Notepad)
 
 ---
 
@@ -261,11 +260,11 @@ Harry,Expecto Patronum,20,1
 # 🤔 CSV vs Excel
 
 ## File Excel (.xlsx) 📗
-- Formato binario complesso; può avere più fogli (sheets)
+- Formato binario complesso, può avere più fogli (sheets)
 - Può contenere formule, grafici, colori, formattazione
 - Più "pesante" (dimensioni maggiori)
 ## File CSV (.csv) 📄
-- Semplice testo; un solo "foglio"
+- Semplice testo, un solo "foglio"
 - Solo dati grezzi, niente formule o colori
 - Leggerissimo e velocissimo da leggere!
 
@@ -358,9 +357,7 @@ df = pl.read_csv("dati.csv")  # Usi le sue funzioni magiche!
 ```
 
 Altre librerie utili per i dati:
-
-**NumPy** 🔢 → Calcoli matematici veloci
-**Matplotlib** 📊 → Creare grafici
+**NumPy** 🔢 → Calcoli matematici veloci, **Matplotlib** 📊 → Creare grafici
 **Scikit-learn** 🤖 → Machine Learning
 
 ---
