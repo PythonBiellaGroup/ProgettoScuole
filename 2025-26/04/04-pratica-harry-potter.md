@@ -50,12 +50,10 @@ Invece di scrivere centinaia di righe per ogni incantesimo, usiamo un database:
 ```python
 import polars as pl
 
-# Carichiamo il dataset degli incantesimi
-incantesimi_df = pl.read_csv("spells.xlsx")
+incantesimi_df = pl.read_csv("spells.csv")
 
 def ottieni_opzioni(personaggio):
-    # Filtriamo la tabella: 'charac' deve corrispondere al nome cercato
-    return incantesimi_df.filter(pl.col("charac") == personaggio)
+    return incantesimi_df.filter(pl.col("character") == personaggio)
 
 ```
 
@@ -163,7 +161,7 @@ Assicurati che i tuoi file siano organizzati così per evitare errori `FileNotFo
 
 * 📁 `progetto_duello/`
 * 📄 `harry_potter.py` (Il tuo codice)
-* 📄 `spells.xlsx` (Il database degli incantesimi)
+* 📄 `spells.csv` (Il database degli incantesimi)
 * 📁 `images/` (Tutte le immagini `.png`)
 * `harry.png`, `voldemort.png`, `hogwarts_bg.png`...
 
