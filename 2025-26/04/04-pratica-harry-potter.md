@@ -3,7 +3,7 @@ marp: true
 theme: default
 paginate: true
 backgroundColor: #1a1a1a
-backgroundImage: url('file:hogwarts-background.png')
+backgroundImage: url('file:pbg-desktop-wallpaper.png')
 backgroundSize: cover
 backgroundPosition: center
 color: #fff
@@ -12,13 +12,111 @@ style: |
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 60px;
   }
-  h1 { font-size: 2.2em; text-align: center; color: #f1c40f; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-  h2 { font-size: 1.8em; text-align: center; margin-bottom: 0.8em; color: #e74c3c; }
-  p, li { font-size: 0.9em; line-height: 1.6; }
-  blockquote { background: rgba(255, 255, 255, 0.05); border-left: 5px solid #f1c40f; padding: 20px; border-radius: 5px; font-style: italic; margin-top: 20px; }
-  pre { background: #1e1e1e; border-radius: 10px; padding: 15px; border: 1px solid #444; }
-  pre code { font-size: 0.8em; }
-  .highlight { color: #f1c40f; font-weight: bold; }
+
+  h1 {
+    font-size: 2em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  h2 {
+    font-size: 1.6em;
+    text-align: center;
+    margin-bottom: 0.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+
+  p, li {
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  blockquote {
+    background: rgba(0,0,0,0.3);
+    border-left: 5px solid #fff;
+    padding: 20px;
+    border-radius: 5px;
+    font-style: italic;
+    color: #fff;
+  }
+
+  code {
+    background: rgba(0,0,0,0.5);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  pre {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
+  }
+
+  pre code {
+    background: transparent;
+    color: #d4d4d4;
+    font-size: 0.9em;
+    font-family: Consolas, 'Courier New', monospace;
+  }
+
+  pre code .hljs-comment,
+  pre code .hljs-quote {
+    color: #aaaaaa;
+    font-style: italic;
+  }
+
+  pre code .hljs-string {
+    color: #f1fa8c;
+  }
+
+  pre code .hljs-keyword {
+    color: #8be9fd;
+  }
+
+  pre code .hljs-function .hljs-title {
+    color: #50fa7b;
+  }
+
+  pre code .hljs-variable {
+    color: #ffb86c;
+  }
+
+  pre code .hljs-number {
+    color: #bd93f9;
+  }
+
+  pre code .hljs-operator {
+    color: #ff79c6;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  th {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+  }
+
+  td {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  tr:hover td {
+    background: rgba(255,255,255,0.1);
+  }
+
 ---
 
 # 🪄 Pygame Zero & Polars
@@ -43,22 +141,53 @@ In questo progetto non ci limiteremo a muovere sprite, ma impareremo a:
 
 ---
 
-## 📊 Polars: Gestire il "Libro degli Incantesimi"
+## ✅ Requisiti
 
-Invece di scrivere centinaia di righe per ogni incantesimo, usiamo un database:
+* Python installato
+* Librerie: `pgzero`, `polars`
+* Cartella del progetto con:
+
+  * `harry_potter.py`: il codice
+  * `spells.csv`: il database
+  * Cartella `images/` con `harry.png`, `voldemort.png`, `vittoria.png`, `sconfitta.png`
+---
+## Import e impostazioni
+
+```python
+import random
+import polars as pl
+import pgzrun
+from pgzero.actor import Actor
+from pgzero.clock import clock
+
+WIDTH = 800
+HEIGHT = 600
+TITLE = "La Battaglia Finale: Harry vs Voldemort"
+```
+
+* `random` serve per probabilità
+* `polars` legge il CSV (lista di incantesimi)
+* `pgzero` è il motore grafico: disegna e gestisce input
+
+---
+
+## 📊 Polars: Gestire gli incantesimi
+
+Per la scelta degli incantesimi usiamo un database:
 
 ```python
 import polars as pl
-
 incantesimi_df = pl.read_csv("spells.csv")
-
 def ottieni_opzioni(personaggio):
     return incantesimi_df.filter(pl.col("character") == personaggio)
-
 ```
 
-> **Perché Polars?** È una libreria di Data Science estremamente veloce. Qui la usiamo per trattare il gioco come un sistema basato su dati: se vogliamo aggiungere nuovi incantesimi, modifichiamo il file Excel senza toccare una riga di codice Python!
+Il file contiene righe con colonne tipo:  `character` (Harry o Voldemort),  `spell` (nome dell'incantesimo),  `damage` (numero — negativo = cura), `precision` (0.0–1.0)
 
+```
+Harry,Stupefy,20,0.85
+Voldemort,Crucio,30,0.7
+```
 ---
 
 ## ⏳ La Gestione dei Turni (State Control)
@@ -77,48 +206,52 @@ gioco_attivo = True  # La partita è in corso o qualcuno è stato sconfitto?
 
 ---
 
-## 🎨 Barre della Vita: L'illusione del Movimento
+## 🎨 Barre della Vita
 
-Perché i punti vita non calano istantaneamente? Usiamo due variabili diverse:
-
-```python
-punti_vita_harry = 100         # Il valore "reale" (logica)
-display_punti_vita_harry = 100 # Il valore "disegnato" (grafica)
-
-```
+Per i punti vita usiamo due variabili diverse: una per la logica, l'altra per la grafica che scorre piano per sembrare fluida: `punti_vita_harry` e `punti_vita_voldemort` (i PV reali) `display_punti_vita_*`: valore usato per disegnare la barra (per animare)
 
 In `update()`, se il valore visualizzato è maggiore di quello reale, lo facciamo scendere lentamente:
-
 ```python
 if display_punti_vita_harry > punti_vita_harry:
     display_punti_vita_harry -= 1  # Crea l'effetto "barra che scorre"
-
 ```
 
 **REMEMBER**: Questo trucco rende il gioco molto più professionale e "smooth" (fluido) agli occhi del giocatore.
 
 ---
 
-## 🛡️ Logica di Combattimento: Danno e Precisione
+## 🛡️ Combattimento: Scelta e Precisione
 
-Ogni incantesimo ha una probabilità di successo. Come la gestiamo?
+1. Prende i dati dell'incantesimo scelto (danno, precisione, nome)
+2. Calcola se l'incantesimo va a segno usando `random.random()`
 
 ```python
-# random.random() genera un numero tra 0.0 e 1.0
 successo = random.random() < precisione
-
 if successo:
     punti_vita_difensore -= danno
     messaggio = f"{attaccante} colpisce con {incantesimo}!"
 else:
     messaggio = f"{incantesimo} è fallito!"
-
 ```
+> **Matematica del gioco**: Se un incantesimo ha precisione `0.8` (80%), abbiamo l'80% di probabilità che il numero generato sia minore di 0.8.
+---
+## 🛡️ Logica di Combattimento: Danno
 
-> **Matematica del gioco**: Se un incantesimo ha precisione `0.8` (80%), abbiamo l'80% di probabilità che il numero generato sia minore di 0.8. È il modo più semplice per implementare la "fortuna" nei videogiochi.
+1. Se l'incantesimo va a segno:
+
+   * Se `danno < 0` → cura
+   * Altrimenti → sottrae PV al difensore e chiama `flash_danno`
+2. Aggiorna `messaggio` e `descrizione`
+3. Controlla se qualcuno è arrivato a 0 PV → pianifica `termina_gioco`
+---
+## 🖱️ UI Design: Input: mouse e tastiera
+
+* `on_mouse_down(pos)`: controlla quale rettangolo è stato cliccato.
+* `on_key_down(key)`: se il gioco è finito e premi SPAZIO, ricomincia (`reset_gioco`).
+
+**Nota pratica:** i rettangoli si calcolano con matematica semplice (colonna/riga).
 
 ---
-
 ## 🖱️ UI Design: La Griglia 2x2
 
 Dobbiamo disporre 4 tasti. Invece di scrivere 4 posizioni manuali, usiamo la matematica:
@@ -136,13 +269,13 @@ for i in range(len(opzioni_correnti)):
 **PRO TIP**: Questa formula è universale. Cambiando il divisore (es. `% 3`) puoi creare griglie di qualsiasi dimensione (3x3, 4x4, ecc.) senza riscrivere il codice.
 
 ---
+## ⚡ Animazioni: `animate()` e `clock`
 
-## ⚡ Animazioni con `animate()` e `clock`
+Obiettivo: far sembrare che lo sprite subisca un colpo.
 
-Per rendere il duello "magico", usiamo gli effetti speciali di Pygame Zero:
-
-1. **Sbalzo (Bounce)**: Usiamo `animate()` per far scattare lo sprite in avanti quando attacca.
-2. **Flash**: Usiamo `clock.schedule_unique()` per far sparire e riapparire lo sprite velocemente quando subisce danni.
+* Spostiamo lo sprite di qualche pixel con `animate()` 
+* Lo facciamo lampeggiare (cambia `opacity`): `clock.schedule_unique()` per far sparire e riapparire lo sprite velocemente quando subisce danni.
+* Riportiamo la posizione originale
 
 ```python
 def flash_danno(sprite):
@@ -150,11 +283,16 @@ def flash_danno(sprite):
     for i in range(3):
         clock.schedule_unique(lambda: setattr(sprite, "opacity", 0), i * 0.4)
         clock.schedule_unique(lambda: setattr(sprite, "opacity", 255), i * 0.4 + 0.2)
-
 ```
+---
+## ⚡ Cambio turno e `clock.schedule_unique`
+
+* Dopo che Harry clicca un incantesimo, il gioco aspetta l'animazione.
+* Se il gioco continua (nessun personaggio ha punti vita uguali a 0), dopo 3 secondi la funzione `fase_voldemort` viene eseguita.
+
+Questo meccanismo evita che tutto succeda istantaneamente e dà tempo all'animazione.
 
 ---
-
 ## 📂 Struttura del Progetto
 
 Assicurati che i tuoi file siano organizzati così per evitare errori `FileNotFound`:
@@ -172,21 +310,28 @@ Assicurati che i tuoi file siano organizzati così per evitare errori `FileNotFo
 
 ---
 
-## 💡 Sfide per voi (Esercitazione)
+## 📌 Errori comuni e come risolverli
+
+* `FileNotFoundError: spells.csv` → controlla il percorso e che il file sia nella cartella giusta.
+* Errori di import → installa le librerie con `pip install pgzero polars` o prova `pandas`.
+* `polars.exceptions.ColumnNotFoundError`: unable to find column ...
+
+---
+## 💡 Idee di sviluppo
 
 Prova a modificare il codice per aggiungere queste funzionalità:
 
 1. **Critici**: Se un incantesimo colpisce, c'è una piccola probabilità (es. 10%) che faccia il doppio dei danni.
 2. **Stamina**: Ogni incantesimo consuma "Energia Magica". Se finisce, devi saltare un turno per ricaricare.
-3. **Colori Dinamici**: Cambia il colore della barra della vita in base alla percentuale (Verde > 50%, Giallo < 50%, Rosso < 20%).
-4. **Logica Voldemort**: Rendi Voldemort più intelligente; invece di scegliere a caso, fagli usare una cura se ha poca vita!
+3. **Logica Voldemort**: Rendi Voldemort più intelligente; invece di scegliere a caso, fagli usare una cura se ha poca vita!
 
 ---
 
-## Conclusione
+## 📌 Conclusione
 
 Il codice non è solo una lista di istruzioni, ma un insieme di **sistemi** (Dati, Grafica, Logica) che comunicano tra loro.
 
 L'uso di strumenti come **Polars** ci permette di pensare come veri sviluppatori di giochi moderni, dove il contenuto (gli incantesimi) è separato dal motore di gioco.
 
-**Bacchette pronte... al lavoro!**
+> **Bacchette pronte... al lavoro!**
+
