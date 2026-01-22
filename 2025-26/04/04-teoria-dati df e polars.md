@@ -187,6 +187,8 @@ Dati sporchi = AI confusa (garbage in, garbage out!)
 ```text
 Character,Spell,Damage,Precision
 Harry,Expelliarmus,10,1
+Harry,Stupeficium,15,1
+...
 ```
 
 **CSV** (file)
@@ -200,7 +202,7 @@ Harry,Expelliarmus,10,1
 # 🔗 Il percorso
 
 **Il percorso:**
-1. 📝 **Raccogli dati** (es: risultati di un quiz)
+1. 📝 **Raccogli dati**
 2. 💾 **Salvali in CSV** (formato leggero e universale)
 3. 🐍 **Caricali in Python** come DataFrame con Polars
 4. 🔬 **Analizza, filtra, trasforma!**
@@ -399,17 +401,40 @@ Altre librerie utili per i dati:
 import polars as pl
 
 # Leggere un CSV (facilissimo!)
-df = pl.read_csv("dati.csv")
-
-# Vedere le prime righe
-print(df.head())
+df = pl.read_csv("spells.csv")
 
 # Info sul DataFrame
 print(df.describe())
+
+# Vedere le prime righe
+print(df.head())
 ```
 
 È così semplice che potrebbe farlo anche il vostro gatto 🐱
 (ok, forse no... ma è comunque facilissimo!)
+
+---
+
+# 🔍 Filter
+
+```python
+# Filtrare per una condizione
+df.filter(pl.col("damage") >= 25)
+
+# Filtrare con più condizioni (AND)
+df.filter(
+    (pl.col("precision") >= 0.8) & 
+    (pl.col("character") == "Harry")
+)
+
+# Filtrare con OR
+df.filter(
+    (pl.col("damage") > 30) | 
+    (pl.col("precision") > 0.8)
+)
+```
+
+Attenzione: Si usa `&` per AND e `|` per OR (non `and`/`or`!)
 
 ---
 
@@ -439,29 +464,6 @@ Lascia passare solo le righe che soddisfano la condizione
 `> 9` è la condizione da verificare
 
 È come dire: "Ehi Polars, dammi solo i secchioni!" 🤓
-
----
-
-# 🔍 Filter
-
-```python
-# Filtrare per una condizione
-df.filter(pl.col("età") >= 18)
-
-# Filtrare con più condizioni (AND)
-df.filter(
-    (pl.col("età") >= 16) & 
-    (pl.col("città") == "Milano")
-)
-
-# Filtrare con OR
-df.filter(
-    (pl.col("voto") > 9) | 
-    (pl.col("voto") < 6)
-)
-```
-
-Nota: Si usa `&` per AND e `|` per OR (non `and`/`or`!)
 
 ---
 
@@ -512,8 +514,8 @@ Cosa c'è di sbagliato qui?
 ```python
 import polars as pl
 
-df = pl.read_csv("giocatori.csv")
-risultato = df.filter(pl.col("punti") > 100 and pl.col("level") > 5)
+df = pl.read_csv("studenti.csv")
+risultato = df.filter(pl.col("voto") > 7 and pl.col("materia") == 'Inglese')
 ```
 
 Suggerimento: Ricordate come si combinano le condizioni?
@@ -529,7 +531,7 @@ Tempo: 20 secondi... ⏱️
 Versione corretta:
 
 ```python
-df.filter((pl.col("punti") > 100) & (pl.col("level") > 5))
+df.filter(pl.col("voto") > 7 & pl.col("materia") == 'Inglese')
 ```
 
 **Perché?**

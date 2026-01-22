@@ -3,7 +3,7 @@ marp: true
 theme: default
 paginate: true
 backgroundColor: #1a1a1a
-backgroundImage: url('file:hogwarts-background.png')
+backgroundImage: url('file:pbg-desktop-wallpaper.png')
 backgroundSize: cover
 backgroundPosition: center
 color: #fff
@@ -12,13 +12,111 @@ style: |
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 60px;
   }
-  h1 { font-size: 2.2em; text-align: center; color: #f1c40f; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-  h2 { font-size: 1.8em; text-align: center; margin-bottom: 0.8em; color: #e74c3c; }
-  p, li { font-size: 0.9em; line-height: 1.6; }
-  blockquote { background: rgba(255, 255, 255, 0.05); border-left: 5px solid #f1c40f; padding: 20px; border-radius: 5px; font-style: italic; margin-top: 20px; }
-  pre { background: #1e1e1e; border-radius: 10px; padding: 15px; border: 1px solid #444; }
-  pre code { font-size: 0.8em; }
-  .highlight { color: #f1c40f; font-weight: bold; }
+
+  h1 {
+    font-size: 2em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  h2 {
+    font-size: 1.6em;
+    text-align: center;
+    margin-bottom: 0.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+
+  p, li {
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  blockquote {
+    background: rgba(0,0,0,0.3);
+    border-left: 5px solid #fff;
+    padding: 20px;
+    border-radius: 5px;
+    font-style: italic;
+    color: #fff;
+  }
+
+  code {
+    background: rgba(0,0,0,0.5);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  pre {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
+  }
+
+  pre code {
+    background: transparent;
+    color: #d4d4d4;
+    font-size: 0.9em;
+    font-family: Consolas, 'Courier New', monospace;
+  }
+
+  pre code .hljs-comment,
+  pre code .hljs-quote {
+    color: #aaaaaa;
+    font-style: italic;
+  }
+
+  pre code .hljs-string {
+    color: #f1fa8c;
+  }
+
+  pre code .hljs-keyword {
+    color: #8be9fd;
+  }
+
+  pre code .hljs-function .hljs-title {
+    color: #50fa7b;
+  }
+
+  pre code .hljs-variable {
+    color: #ffb86c;
+  }
+
+  pre code .hljs-number {
+    color: #bd93f9;
+  }
+
+  pre code .hljs-operator {
+    color: #ff79c6;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  th {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+  }
+
+  td {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  tr:hover td {
+    background: rgba(255,255,255,0.1);
+  }
+  
 ---
 
 # 🪄 Pygame Zero & Polars
@@ -45,6 +143,7 @@ In questo progetto non ci limiteremo a muovere sprite, ma impareremo a:
 
 ## 📊 Polars: Gestire il "Libro degli Incantesimi"
 
+<br>
 Invece di scrivere centinaia di righe per ogni incantesimo, usiamo un database:
 
 ```python
@@ -68,7 +167,6 @@ Il gioco non avviene tutto insieme. Abbiamo bisogno di variabili che controllino
 ```python
 attesa_input = True  # Il gioco aspetta che tu clicchi un incantesimo
 gioco_attivo = True  # La partita è in corso o qualcuno è stato sconfitto?
-
 ```
 
 * **Turno Harry**: `attesa_input` è `True`. Il mouse è attivo.
@@ -78,13 +176,12 @@ gioco_attivo = True  # La partita è in corso o qualcuno è stato sconfitto?
 ---
 
 ## 🎨 Barre della Vita: L'illusione del Movimento
-
+<br>
 Perché i punti vita non calano istantaneamente? Usiamo due variabili diverse:
 
 ```python
 punti_vita_harry = 100         # Il valore "reale" (logica)
 display_punti_vita_harry = 100 # Il valore "disegnato" (grafica)
-
 ```
 
 In `update()`, se il valore visualizzato è maggiore di quello reale, lo facciamo scendere lentamente:
@@ -92,7 +189,6 @@ In `update()`, se il valore visualizzato è maggiore di quello reale, lo facciam
 ```python
 if display_punti_vita_harry > punti_vita_harry:
     display_punti_vita_harry -= 1  # Crea l'effetto "barra che scorre"
-
 ```
 
 **REMEMBER**: Questo trucco rende il gioco molto più professionale e "smooth" (fluido) agli occhi del giocatore.
@@ -100,7 +196,7 @@ if display_punti_vita_harry > punti_vita_harry:
 ---
 
 ## 🛡️ Logica di Combattimento: Danno e Precisione
-
+<br>
 Ogni incantesimo ha una probabilità di successo. Come la gestiamo?
 
 ```python
@@ -112,7 +208,6 @@ if successo:
     messaggio = f"{attaccante} colpisce con {incantesimo}!"
 else:
     messaggio = f"{incantesimo} è fallito!"
-
 ```
 
 > **Matematica del gioco**: Se un incantesimo ha precisione `0.8` (80%), abbiamo l'80% di probabilità che il numero generato sia minore di 0.8. È il modo più semplice per implementare la "fortuna" nei videogiochi.
@@ -190,3 +285,19 @@ Il codice non è solo una lista di istruzioni, ma un insieme di **sistemi** (Dat
 L'uso di strumenti come **Polars** ci permette di pensare come veri sviluppatori di giochi moderni, dove il contenuto (gli incantesimi) è separato dal motore di gioco.
 
 **Bacchette pronte... al lavoro!**
+
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Grazie per l'attenzione...
+
+<br>
+
+![width:300px](./pbg-qr-code.png)
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
