@@ -116,7 +116,6 @@ style: |
   tr:hover td {
     background: rgba(255,255,255,0.1);
   }
-
 ---
 
 # 🪄 Pygame Zero & Polars
@@ -197,7 +196,6 @@ Il gioco non avviene tutto insieme. Abbiamo bisogno di variabili che controllino
 ```python
 attesa_input = True  # Il gioco aspetta che tu clicchi un incantesimo
 gioco_attivo = True  # La partita è in corso o qualcuno è stato sconfitto?
-
 ```
 
 * **Turno Harry**: `attesa_input` è `True`. Il mouse è attivo.
@@ -334,4 +332,18 @@ Il codice non è solo una lista di istruzioni, ma un insieme di **sistemi** (Dat
 L'uso di strumenti come **Polars** ci permette di pensare come veri sviluppatori di giochi moderni, dove il contenuto (gli incantesimi) è separato dal motore di gioco.
 
 > **Bacchette pronte... al lavoro!**
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
 
+## Grazie per l'attenzione...
+
+<br>
+
+![width:300px](./pbg-qr-code.png)
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
