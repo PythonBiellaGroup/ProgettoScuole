@@ -156,7 +156,7 @@ def ottieni_opzioni(personaggio):
 
 ```
 
-> **Perché Polars?** È una libreria di Data Science estremamente veloce. Qui la usiamo per trattare il gioco come un sistema basato su dati: se vogliamo aggiungere nuovi incantesimi, modifichiamo il file Excel senza toccare una riga di codice Python!
+> **Perché Polars?** È una libreria di Data Science estremamente veloce. Qui la usiamo per trattare il gioco come un sistema basato su dati: se vogliamo aggiungere nuovi incantesimi, modifichiamo il file CSV senza toccare una riga di codice Python!
 
 ---
 
