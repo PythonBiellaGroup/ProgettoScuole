@@ -141,7 +141,8 @@ style: |
 
 ```
 APPLICAZIONE → RACCOLTA → ELABORAZIONE → ANALISI → VISUALIZZAZIONE
-   (Quiz)      (CSV)       (Polars)     (Insights)  (Streamlit)
+Esempio: 
+Quiz           CSV        Polars         Insights  Streamlit
 ```
 
 ### I nostri dati seguono questo percorso:
@@ -171,28 +172,26 @@ tempo_risposta = 1200  # millisecondi
 ```csv
 nome_utente,id_domanda,numero_risposta_fornita,tempo_risposta
 alice,1,2,1200
-bob,1,1,1800
-charlie,1,2,1500
+paola,1,1,1800
+marco,1,2,1500
 ```
 
 ---
 
-## 🔧 Dal CSV ai Insights
+## 🔧 Dal CSV agli Insights
+<br>
 
-### 3. ELABORAZIONE (Polars)
-```python
-import polars as pl
+### 3. ELABORAZIONE (Analisi dei Dati)
 
-# Leggiamo i dati
-df_studenti = pl.read_csv("risposte_tutti.csv")
-df_risposte = pl.read_csv("risposte.csv")
+**Cosa significa elaborare i dati?**
 
-# Uniamo i dati per verificare correttezza
-df_con_corrette = df_studenti.join(
-    df_risposte,
-    on="id_domanda"
-)
-```
+- 📖 **Leggere i file CSV**: Importare i dati nel programma
+- 🔗 **Combinare informazioni**: Unire dati da file diversi (es. risposte + soluzioni)
+- 🔢 **Calcolare metriche**: Contare, sommare, fare medie, percentuali
+- 🎯 **Filtrare**: Selezionare solo i dati che ci interessano
+- 📊 **Raggruppare**: Organizzare i dati per categorie (es. per studente, per domanda)
+
+> Nel prossimo incontro vedremo come fare tutto questo con **Polars**!
 
 ---
 
@@ -200,21 +199,17 @@ df_con_corrette = df_studenti.join(
 <br>
 
 ### 4. ANALISI (Cercare Insights)
-```python
-# Quanti studenti hanno partecipato?
-num_studenti = df_studenti.select("nome_utente").unique().height
 
-# Qual è la percentuale di risposte corrette?
-df_con_corrette = df_con_corrette.with_columns(
-    (pl.col("numero_risposta_fornita") == pl.col("numero_risposta_corretta"))
-    .alias("corretta")
-)
+**Domande che possiamo farci sui dati del quiz:**
 
-percentuale = (df_con_corrette.filter(pl.col("corretta")).height / 
-               df_con_corrette.height * 100)
-```
+- 👥 **Quanti** studenti hanno partecipato?
+- ✅ **Qual è** la percentuale di risposte corrette?
+- 🏆 **Chi** ha fatto il punteggio migliore?
+- 📉 **Quali** domande sono risultate più difficili?
+- ⏱️ **Quanto tempo** hanno impiegato in media?
+- 🎯 **Ci sono** pattern interessanti? (es. chi va veloce sbaglia di più?)
 
-**Insight**: "Quale percentuale di risposte è corretto?"
+**Insight Esempio**: "Il 65% delle risposte è corretto → la classe ha capito bene!"
 
 ---
 
@@ -224,8 +219,8 @@ percentuale = (df_con_corrette.filter(pl.col("corretta")).height /
 ### Senza visualizzazione:
 ```
 alice ha risposto correttamente a 15 domande su 20
-bob ha risposto correttamente a 12 domande su 20
-charlie ha risposto correttamente a 18 domande su 20
+marco ha risposto correttamente a 12 domande su 20
+paola ha risposto correttamente a 18 domande su 20
 diana ha risposto correttamente a 8 domande su 20
 emma ha risposto correttamente a 16 domande su 20
 ...
@@ -245,10 +240,10 @@ emma ha risposto correttamente a 16 domande su 20
 ```
 🏆 CLASSIFICA STUDENTI
 
-█████████████████████ Charlie (18/20)
+█████████████████████ Paola (18/20)
 █████████████████     Emma (16/20)
 ████████████████      Alice (15/20)
-█████████████         Bob (12/20)
+█████████████         Marco (12/20)
 ████████              Diana (8/20)
 ```
 
@@ -268,6 +263,51 @@ emma ha risposto correttamente a 16 domande su 20
 - ✅ **Veloce**: Poche righe di codice → App completa
 - ✅ **Interattiva**: Aggiornamenti automatici
 - ✅ **Professionale**: Risultati che sembrano app vere
+
+---
+
+
+## 🌐 Classificazione di Streamlit
+<br>
+
+### Ricordiamo: Pagine Web
+
+| Tipo | Caratteristiche | Esempi |
+|------|----------------|--------|
+| **Pagina Statica** | HTML + CSS fisso, stesso contenuto per tutti | Sito vetrina, Blog |
+| **Applicazione Client-Side** | JavaScript manipola il DOM nel browser | React, Vue, Angular |
+| **Applicazione Server-Side** | Il server genera HTML dinamico | PHP, Django, Flask |
+
+### 🤔 Dove si colloca Streamlit?
+
+---
+
+## 🎯 Streamlit: app Web Server-Side
+<br>
+
+### Come funziona Streamlit:
+
+```
+   BROWSER                    SERVER
+┌─────────────┐           ┌─────────────┐
+│             │  Request  │   Python    │
+│   Utente    │ ────────> │  Streamlit  │
+│             │           │   Script    │
+│             │  HTML/CSS │             │
+│  Visualizza │ <──────── │  Genera     │
+│   Pagina    │           │   Pagina    │
+└─────────────┘           └─────────────┘
+```
+---
+
+## 🎯 Streamlit: app Web Server-Side
+<br>
+
+### Caratteristiche:
+- ✅ **Server-Side**: Python gira sul server, non nel browser
+- ✅ **Dinamico**: Ogni interazione → riesecuzione dello script → nuova pagina
+- ✅ **Zero JavaScript**: Streamlit genera tutto (HTML/CSS/JS) automaticamente
+- ✅ **Real-time**: Connessione WebSocket per aggiornamenti istantanei
 
 ---
 
@@ -314,6 +354,7 @@ st.bar_chart(df, x="nome", y="voto")
 ---
 
 ## 💻 Installazione
+<br>
 
 ### Nel terminale:
 ```bash
@@ -328,7 +369,7 @@ streamlit --version
 ### Eseguire un'app Streamlit:
 ```bash
 streamlit run nome_file.py
-#oppure
+# oppure
 python -m streamlit run nome_file.py
 ```
 
@@ -555,8 +596,8 @@ st.dataframe(df, hide_index=True)  # ✅ Più pulito
 ```csv
 nome_utente,id_domanda,numero_risposta_fornita
 alice,1,2
-bob,1,1
-charlie,1,2
+paola,1,1
+marco,1,2
 ```
 
 ---
@@ -564,37 +605,17 @@ charlie,1,2
 ## 🔍 Dal Dato all'insight: Esempio Pratico
 <br>
 
-#### 2. ELABORAZIONE (Polars)
-```python
-difficolta = (
-    df_con_corrette
-    .group_by("id_domanda")
-    .agg(
-        (pl.col("corretta").sum() / pl.col("corretta").count() * 100)
-        .alias("percentuale_corrette")
-    )
-    .sort("percentuale_corrette")
-)
-```
----
+#### 2. ELABORAZIONE (Analisi)
 
-## 🔍 Dal Dato all'insight: Esempio Pratico
-<br>
+**Cosa dobbiamo fare per rispondere alla domanda:**
 
-#### 3. VISUALIZZAZIONE (Streamlit)
-```python
-st.header("📈 Domande Più Difficili")
-st.dataframe(difficolta)
-st.bar_chart(
-    difficolta,
-    x="id_domanda",
-    y="percentuale_corrette"
-)
-```
-
-#### 4. INSIGHT
-> "La domanda 5 ha solo il 30% di risposte corrette → dobbiamo spiegarla meglio!"
-
+1. 📖 Leggere i dati delle risposte date dagli studenti e le corrette
+2. 🔗 Confrontare le risposte date con quelle corrette
+3. 📊 Raggruppare per domanda
+4. 🔢 Calcolare per ogni domanda: quanti hanno risposto corretto?
+5. 📈 Calcolare la percentuale di successo
+6. 📉 Ordinare dalla più difficile (% più bassa) alla più facile
+> Con **Polars** tutto questo si fa in poche righe! Lo vedremo prossimamente.
 ---
 
 ## 🎯 Struttura di una Dashboard Tipica
@@ -619,24 +640,6 @@ st.header("📈 Analisi Difficoltà")
 
 ---
 
-## 🚀 Prossimi Passi
-<br>
-
-### Ora vedremo insieme:
-
-1. **Dashboard completa del quiz** con:
-   - Statistiche generali
-   - Classifica studenti
-   - Analisi difficoltà domande
-   - Tempi di risposta
-   - Grafici interattivi
-
-2. **Useremo tutti i comandi visti** in modo pratico
-
-3. **Scopriremo insights reali** dai dati del quiz
-
----
-
 ## 📝 Ricapitolando
 
 ### >>>>>>> Il ciclo completo dei dati:
@@ -653,7 +656,7 @@ Quiz → CSV → Polars → Insights → Streamlit
 6. `st.bar_chart()` - Grafico
 7. `st.columns()` - Layout a colonne
 
-### Installazione:
+### Installazione ed esecuzione:
 ```bash
 pip install streamlit
 streamlit run app.py
