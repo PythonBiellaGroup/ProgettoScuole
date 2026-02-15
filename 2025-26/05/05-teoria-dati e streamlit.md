@@ -47,17 +47,12 @@ style: |
   }
 
   pre {
-    background: #1e1e1e;
-    border-radius: 10px;
-    padding: 20px;
-    overflow: auto;
+      background: #f5f5f5;  /* Grigio molto chiaro, quasi bianco */
+      border: 2px solid rgba(255,255,255,0.3);
   }
 
   pre code {
-    background: transparent;
-    color: #d4d4d4;
-    font-size: 0.9em;
-    font-family: Consolas, 'Courier New', monospace;
+      color: #1a1a1a;  /* Nero */
   }
 
   pre code .hljs-comment,
@@ -67,11 +62,11 @@ style: |
   }
 
   pre code .hljs-string {
-    color: #f1fa8c;
+    color: #d73a49;
   }
 
   pre code .hljs-keyword {
-    color: #8be9fd;
+    color: #0366d6;
   }
 
   pre code .hljs-function .hljs-title {
