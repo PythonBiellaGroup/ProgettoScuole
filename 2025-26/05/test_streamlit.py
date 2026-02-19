@@ -5,7 +5,7 @@ import polars as pl
 st.title("🎮 Test Streamlit")
 
 # TESTO SEMPLICE
-#st.write("Funziona! Questa è la mia prima app Streamlit.")
+# st.write("Funziona! Questa è la mia prima app Streamlit.")
 
 # CREIAMO ALCUNI DATI DI ESEMPIO
 # df = pl.DataFrame({
