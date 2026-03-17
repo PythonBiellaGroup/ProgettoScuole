@@ -158,6 +158,10 @@ Dovrete sicuramnte usare:
 > **Ricorda:** In `draw()` si visualizza, in `update()` si calcola!
 ---
 
+<br>
+<br>
+<br>
+
 - **`on_key_down(key)`**: L'orecchio 👂. Si attiva solo nel momento esatto in cui premi un tasto. Ottimo per azioni singole (saltare, sparare).
 - **`Actor("nome_immagine")`**: Il protagonista 🎭. Crea l'oggetto di gioco usando un'immagine dalla cartella `images`.
 - **`screen.collidepoint()`**: Il sensore 💥. Controlla se il mouse o un oggetto ha toccato un punto specifico.
@@ -169,3 +173,19 @@ Dovrete sicuramnte usare:
 > *"Un buon gioco nasce prima sulla carta, e poi prende vita nel codice!"*
 
 Ora che abbiamo il piano, apriamo l'editor e iniziamo a scrivere con **PyGame Zero**! 🐍🎮
+
+---
+<style scoped>
+img {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+## Grazie per l'attenzione...
+
+<br>
+
+![width:300px](./pbg-qr-code.png)
+
+> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
