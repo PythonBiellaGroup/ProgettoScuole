@@ -150,7 +150,7 @@ Quali "assets" (risorse visive) ti servono?
 # L'Anatomia di PyGameZsero
 ## I pezzi fondamentali del tuo codice
 
-Dovrete sicuramnte usare:
+Dovrete sicuramente usare:
 
 - **`draw()`**: Il pittore 🎨. Viene chiamata automaticamente per ridisegnare lo schermo. Qui usi `screen.clear()` e i metodi degli Actor.
 - **`update()`**: Il cervello 🧠. Viene chiamata 60 volte al secondo. Qui gestisci la logica, il movimento e le collisioni (es. `alieno.x += 2`).

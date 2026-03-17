@@ -133,7 +133,7 @@ MEMO è un gioco senza personaggi. Il tema è la memoria visiva: il giocatore de
 
 ### 2. Stati del gioco
 
-**Inizio** — le carte sono sul tavolo, tutte coperte. Il contatore errori è visibile.
+**Gioco in corso** — All'inizio le carte sono sul tavolo, tutte coperte. Il contatore errori è visibile.
 
 ![width:300px](./memo_start.png)
 
@@ -143,7 +143,7 @@ MEMO è un gioco senza personaggi. Il tema è la memoria visiva: il giocatore de
 
 ### 2. Stati del gioco
 
-**Gioco in corso** — le carte sono sul tavolo, il giocatore sta cercando le coppie. Il contatore errori è visibile.
+**Gioco in corso** — Le carte doppie che sono state individuate sono scoperte, il giocatore sta altre cercando le coppie. Il contatore errori è visibile.
 
 ![width:300px](./memo_playing.png)
 
