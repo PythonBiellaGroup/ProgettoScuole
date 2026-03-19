@@ -47,268 +47,212 @@ style: |
   }
 
   pre {
-      background: #f5f5f5;
-      border: 2px solid rgba(255,255,255,0.3);
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
   }
 
   pre code {
-      color: #1a1a1a;
+    background: transparent;
+    color: #d4d4d4;
+    font-size: 0.9em;
+    font-family: Consolas, 'Courier New', monospace;
   }
 
-  pre code .hljs-comment,
-  pre code .hljs-quote {
-    color: #aaaaaa;
-    font-style: italic;
+  .two-col {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
   }
 
-  pre code .hljs-string {
-    color: #d73a49;
+  .col-text {
+    flex: 1 1 64%;
   }
 
-  pre code .hljs-keyword {
-    color: #0366d6;
+  .col-image {
+    flex: 0 0 32%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
 
-  pre code .hljs-function .hljs-title {
-    color: #50fa7b;
-  }
-
-  pre code .hljs-variable {
-    color: #ffb86c;
-  }
-
-  pre code .hljs-number {
-    color: #bd93f9;
-  }
-
-  pre code .hljs-operator {
-    color: #ff79c6;
-  }
-
-  table {
-    border-collapse: collapse;
+  .col-image img {
     width: 100%;
-    margin: 20px 0;
-    background: rgba(0,0,0,0.4);
-  }
-
-  th {
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    padding: 12px;
-    text-align: left;
-    border: 1px solid rgba(255,255,255,0.2);
-    font-weight: bold;
-  }
-
-  td {
-    background: rgba(0,0,0,0.3);
-    color: #fff;
-    padding: 12px;
-    border: 1px solid rgba(255,255,255,0.2);
-  }
-
-  tr:hover td {
-    background: rgba(255,255,255,0.1);
+    max-width: 320px;
+    height: auto;
   }
 ---
 
 # Progetta il tuo gioco
 ## Esempio: DOBBLE
 
-💻 **III Liceo Scientifico Biella - Scienze Applicate**
-🐍 **Python Biella Group**
-
----
-<br>
-<br>
-<br>
-
-### 1. Tema e personaggi
-
-DOBBLE è un gioco senza personaggi. Il tema è il riconoscimento visivo rapido: il giocatore osserva due carte piene di simboli e deve trovare il simbolo uguale presente su entrambe. Non ci sono nemici che si muovono: la sfida è contro il tempo e contro i propri errori.
-
-**Immagine suggerita:** schermata introduttiva con due carte e simboli colorati.
-
-![width:380px](./dobble_cover_intro.png)
+**III Liceo Scientifico Biella - Scienze Applicate**  
+**Python Biella Group**
 
 ---
 
-<br>
-<br>
+# 1. Tema e personaggi
 
-### 2. Stati del gioco
+<div class="two-col">
+<div class="col-text">
 
-**Menu iniziale** — il titolo DOBBLE è visibile, ci sono le regole principali, un esempio con due carte e il pulsante START. Il gioco spiega già che bisogna cliccare il simbolo uguale tra le due carte. Il codice mostra questa schermata nello stato `menu` prima che la partita inizi.
+DOBBLE e' un gioco di osservazione e velocita'.
 
-![width:300px](./dobble_menu.png)
+- Non ci sono personaggi da muovere nello spazio.
+- Il protagonista e' il giocatore, che deve osservare due carte piene di simboli.
+- La sfida consiste nel trovare il simbolo uguale presente su entrambe le carte.
+- Il ritmo deve essere rapido: il gioco deve dare la sensazione di una prova di attenzione e riflessi.
 
----
+**Idea chiave:** il divertimento nasce dalla capacita' di riconoscere in fretta il collegamento corretto tra due insiemi di simboli.
 
-<br>
-<br>
-
-### 2. Stati del gioco
-
-**Gioco in corso** — si vedono due carte principali, ognuna con 8 box cliccabili, il messaggio centrale, il numero del round, il punteggio, le vite e il tempo rimasto. Tutta la logica di partita attiva si trova nello stato `gioco`. fileciteturn3file0
-
-![width:300px](./dobble_gioco.png)
-
----
-
-<br>
-<br>
-
-### 2. Stati del gioco
-
-**Vittoria** — quando il giocatore raggiunge il punteggio obiettivo, appare la schermata finale verde con il messaggio “HAI VINTO!” e il pulsante RIGIOCA. La vittoria viene attivata quando `punteggio >= PUNTEGGIO_OBIETTIVO`. fileciteturn3file0
-
-![width:300px](./dobble_vittoria.png)
+</div>
+<div class="col-image">
+<img src="./dobble_cover_intro.png" alt="Copertina Dobble">
+</div>
+</div>
 
 ---
 
-<br>
-<br>
+# 2. Stati del gioco
 
-### 2. Stati del gioco
+<div class="two-col">
+<div class="col-text">
 
-**Game Over** — se finiscono le vite, oppure se scade il tempo e non restano vite, il gioco passa allo stato `game_over`, mostrando il punteggio finale, un messaggio di errore e il pulsante RIGIOCA. fileciteturn3file0
+Il gioco puo' essere diviso in momenti chiari:
 
-![width:300px](./dobble_game_over.png)
+- **Menu iniziale:** mostra il titolo, spiega in poche righe cosa bisogna fare e invita a iniziare.
+- **Gioco in corso:** il giocatore vede due carte, le informazioni utili della partita e puo' selezionare un simbolo.
+- **Vittoria:** appare quando il giocatore raggiunge l'obiettivo richiesto.
+- **Game Over:** appare quando il giocatore non ha piu' possibilita' di continuare.
 
----
+Ogni stato deve essere facile da riconoscere a colpo d'occhio, sia nei colori sia nei messaggi.
 
-<br>
-<br>
-<br>
-
-### 3. Come si vince e come si perde
-
-**Tipo di gioco:** misto tra gioco a obiettivi e gioco a tempo.
-
-**Condizione di vittoria:** raggiungere **N punti**, cioè trovare correttamente N simboli uguali nei round proposti. Il valore può essere impostato in una costante, es. `PUNTEGGIO_OBIETTIVO = 8`. 
-
+</div>
+<div class="col-image">
+<img src="./dobble_menu.png" alt="Menu Dobble">
+</div>
+</div>
 
 ---
 
-<br>
-<br>
-<br>
+# 3. Condizioni di vittoria e sconfitta
 
-**Condizione di sconfitta:**
-- perdere tutte le **3 vite**;
-- sbagliare troppe volte;
-- far scadere il tempo del round fino a consumare tutte le vite;
-- terminare i round disponibili prima di arrivare al punteggio richiesto. fileciteturn3file0
+<div class="two-col">
+<div class="col-text">
 
-**Livelli:** non ci sono livelli veri e propri; la difficoltà resta costante, ma la pressione cresce perché ogni round ha un timer di **30 secondi**.
+Come si vince:
 
----
+- Il giocatore deve accumulare un certo numero di risposte corrette.
+- Ogni volta che individua il simbolo comune, ottiene un punto e passa a una nuova coppia di carte.
 
-<br>
-<br>
-<br>
+Come si perde:
 
-### 4. Azioni del giocatore
+- Se seleziona un simbolo sbagliato, perde una vita.
+- Se non risponde entro il tempo disponibile per il round, perde una vita.
+- Quando le vite finiscono, la partita termina.
 
-Il giocatore interagisce esclusivamente con il **mouse**:
+Il gioco deve quindi combinare tre elementi:
 
-- **Click su START** → avvia la partita
-- **Click su un box della carta sinistra o destra** → seleziona un simbolo
-- **Se il simbolo è corretto** → il punteggio aumenta di 1 e parte un nuovo round
-- **Se il simbolo è sbagliato** → si perde una vita e parte un nuovo round
-- **Click su RIGIOCA** → riavvia la partita dalla schermata finale
+- osservazione
+- precisione
+- gestione del tempo
 
----
-
-<br>
-<br>
-<br>
-
-### 5. Oggetti del gioco - Carta (elemento principale)
-
-| Aspetto | Dettaglio |
-|---|---|
-| Cosa fa | Contiene 8 simboli tra cui può esserci quello uguale all'altra carta |
-| Come si muove | Non si muove, resta fissa sullo schermo |
-| Stati possibili | visibile nel menu / attiva durante il gioco |
-| Collisione | Non c'è collisione fisica; il contatto è il click del mouse dentro uno dei box `Rect(...)` |
-
+</div>
+<div class="col-image">
+<img src="./dobble_game_over.png" alt="Game Over Dobble">
+</div>
+</div>
 
 ---
 
-<br>
-<br>
+# 4. Le azioni del giocatore
 
-### 5. Oggetti del gioco
+<div class="two-col">
+<div class="col-text">
 
-Le due carte principali sono `carta_sinistra` e `carta_destra`, ognuna suddivisa in 8 aree cliccabili.
+L'interazione principale e' semplice e immediata:
 
-**Box cliccabili** — sono le zone rettangolari interne alle carte. Ogni box contiene un simbolo e può ricevere il click del giocatore. Nel codice sono definiti con molti `Rect(...)` separati e raccolti in due liste: `box_carta_sinistra` e `box_carta_destra`.
+- osservare le due carte
+- confrontare i simboli presenti
+- cliccare il simbolo che compare su entrambe
 
-**Barra superiore** — mostra titolo, round, punti, vite e tempo.
+Il gioco deve restituire subito un feedback:
 
-**Area messaggi** — mostra testi come “Trova il simbolo uguale.”, “Corretto!” o “Sbagliato!”.
+- se la scelta e' corretta, il giocatore avanza
+- se la scelta e' sbagliata, subisce una penalita'
+- se il tempo scade, il round viene considerato perso
 
-**Pulsanti** — `START` nel menu e `RIGIOCA` nelle schermate finali.
+L'obiettivo dell'interfaccia e' far capire tutto in pochi secondi, senza comandi complessi.
 
----
-
-<br>
-<br>
-<br>
-
-### 6. Grafica
-
-**Sfondo:** colore pieno diverso per ogni schermata:
-- blu per il menu,
-- azzurro per il gioco,
-- verde per la vittoria,
-- rosso scuro per il game over. fileciteturn3file0
-
-**Carte:** grandi rettangoli bianchi affiancati.
-
-**Simboli:** immagini già presenti nella cartella `images` con nomi come `sole`, `luna`, `pesce`, `robot`, `banana`. Quando un simbolo ha l'immagine, il gioco usa `screen.blit(...)`; altrimenti scrive il testo.
+</div>
+<div class="col-image">
+<img src="./dobble_gioco.png" alt="Partita Dobble">
+</div>
+</div>
 
 ---
 
-<br>
+# 5. Definire gli oggetti del gioco
 
-### 6. Grafica
+Gli elementi fondamentali sono:
 
-**Testo:** molto importante per guidare il giocatore. Il codice usa etichette grandi e leggibili per titolo, regole, timer, punteggio e messaggi di stato.
+- **Due carte di gioco:** ciascuna contiene un insieme di simboli.
+- **Simboli:** immagini o icone facilmente distinguibili tra loro.
+- **Timer del round:** indica quanto tempo resta per rispondere.
+- **Punteggio:** mostra i successi ottenuti.
+- **Vite:** rappresentano gli errori ancora concessi.
+- **Messaggi di feedback:** comunicano se la risposta e' corretta, sbagliata o se il tempo e' terminato.
+- **Pulsanti:** servono per iniziare una nuova partita o rigiocare.
 
-**Immagini esterne utili:** in questa versione servono davvero, perché i simboli vengono mostrati come file immagine se disponibili nella cartella `images`. L'elenco include, tra gli altri, `sole`, `gatto`, `albero`, `luna`, `cane`, `treno`, `fiore`, `chiave`, `robot`, `banana`.
+Regola fondamentale del design del round:
 
----
+- tra le due carte deve esserci sempre uno e un solo simbolo in comune
 
-<br>
-<br>
-
-### 7. Struttura del codice
-
-Il file segue una struttura semplice ma chiara:
-
-- **Costanti iniziali** → dimensioni finestra, tempo round, vite iniziali, punteggio obiettivo
-- **`Rect(...)`** → definiscono carte, pulsanti e box cliccabili
-- **`draw_*()`** → disegnano le varie schermate
-- **`on_mouse_down()`** → intercetta i click del giocatore
-- **`controlla_risposta()`** → decide se il click è corretto o sbagliato
-- **`update_secondi_mancanti()`** → gestisce il timer del round 
+Questo e' il cuore del gioco, indipendentemente da come verra' implementato.
 
 ---
 
-<br>
-<br>
+# 6. Pensare alla grafica
 
-### 8. Esempio di round
+<div class="two-col">
+<div class="col-text">
 
-Ogni round è già pronto dentro `rounds_raw` e contiene:
-- 8 simboli per la carta sinistra
-- 8 simboli per la carta destra
-- 1 simbolo comune dichiarato esplicitamente
+La grafica deve aiutare la lettura rapida:
 
-Esempio: una stringa contiene due gruppi separati da `|` e il terzo pezzo è il simbolo uguale. Poi il codice divide le stringhe con `split("|")` e `split(";")`.
+- sfondo semplice e ordinato
+- due carte ben separate e bilanciate nello schermo
+- simboli grandi e riconoscibili
+- area informativa con tempo, vite e punteggio
+- colori diversi per distinguere menu, partita, vittoria e sconfitta
+
+Conviene progettare anche queste schermate:
+
+- una schermata iniziale con regole essenziali
+- una schermata finale di vittoria
+- una schermata finale di sconfitta
+
+La grafica non deve distrarre: deve rendere immediata la ricerca del simbolo comune.
+
+</div>
+<div class="col-image">
+<img src="./dobble_vittoria.png" alt="Vittoria Dobble">
+</div>
+</div>
+
+---
+
+# Obiettivo del progetto
+
+Chi dovra' realizzare questo gioco dovra' costruire una versione personale di DOBBLE che rispetti queste idee:
+
+- confronto visivo tra due carte
+- un solo simbolo comune per round
+- risposte tramite selezione del giocatore
+- punti, vite e tempo come regole principali
+- schermate chiare dall'inizio alla fine della partita
+
+L'implementazione concreta puo' cambiare, ma il funzionamento del gioco deve restare questo.
 
 ---
 <style scoped>
@@ -324,4 +268,4 @@ img {
 
 ![width:300px](./pbg-qr-code.png)
 
-> *"C'è sempre qualcosa da imparare per migliorarci e crescere…**insieme!**"*
+> *"C'e' sempre qualcosa da imparare per migliorarci e crescere... insieme!"*
